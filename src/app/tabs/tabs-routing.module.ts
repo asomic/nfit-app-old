@@ -45,9 +45,32 @@ const routes: Routes = [
               loadChildren: () => import('../pages/clases/clase-show/clase-show.module').then( m => m.ClaseShowPageModule)
             },
 
+
         ]
     },
-    ]
+    {
+      path: 'plans',
+      children: [
+        {
+          path: '',
+          loadChildren: () => import('../pages/plans/plan-index/plan-index.module').then( m => m.PlanIndexPageModule)
+        },
+        {
+          path: ':id',
+          loadChildren: () => import('../pages/plans/plan-show/plan-show.module').then( m => m.PlanShowPageModule)
+        },
+      ]
+    },
+    {
+      path: 'profile',
+      children: [
+        {
+          path: '',
+          loadChildren: () => import('../pages/users/profile-show/profile-show.module').then( m => m.ProfileShowPageModule)
+        },
+      ]
+    }
+  ]
   },
 ];
 

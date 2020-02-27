@@ -6,42 +6,26 @@ import { switchMap } from 'rxjs/operators';
 //services
 import { AuthService } from '../../services/auth/auth.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class PlanService {
+export class UserService {
 
   constructor(
     private authservice: AuthService,
     private http: HttpClient,
   ) { }
 
-
-  getPlans(){
+  profile(){
     return this.authservice.auth.pipe(
       switchMap(
         auth => {
           return this.http.get(
-            auth._domain+'/plans?all=true',
+            auth._domain+'/profile',
             auth._header
           )
         }
       )
     );
   }
-  
-  actualPlan(){
-    return this.authservice.auth.pipe(
-      switchMap(
-        auth => {
-          return this.http.get(
-            auth._domain+'/profile/actualplan',
-            auth._header
-          )
-        }
-      )
-    );
-  }
-
 }
