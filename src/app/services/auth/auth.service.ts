@@ -123,8 +123,7 @@ export class AuthService {
           parsedData['_domain'],
           httpOptions,
         )
-        
-        //console.log(auth);
+
         return auth;
       }),
       tap(auth => {
@@ -138,7 +137,28 @@ export class AuthService {
     );
   }
 
+  logout() {
+    this.loadingCtrl.create({ keyboardClose: true, spinner: 'crescent'})
+        .then(loadingEl => {
+            loadingEl.present();
+            console.log(this.auth);
+            console.log(this._auth);
+            const auth = this._auth.next(null);
+            console.log(this.auth);
+            console.log(this._auth);
+            Plugins.Storage.remove({ key: "auth" }).then(result => {
+              console.log('auth');
+              console.log(result);
+              if (auth == null) {
+                console.log('redirigiendo');
+                this.router.navigateByUrl('/login');
+                loadingEl.dismiss();
+              }
+            });
 
+        }
+    );
+}
 
 
 }

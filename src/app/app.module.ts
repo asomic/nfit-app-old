@@ -15,9 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule],
   providers: [
     StatusBar,
