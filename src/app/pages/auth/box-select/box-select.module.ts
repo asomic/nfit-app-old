@@ -13,8 +13,7 @@ import { BoxSelectPage } from './box-select.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    BoxSelectPageRoutingModule
-  ],
-  declarations: [BoxSelectPage]
+    BoxSelectPageRoutingModule,
+    ],
 })
 export class BoxSelectPageModule {}

@@ -28,4 +28,18 @@ export class UserService {
       )
     );
   }
+
+  addPushToken(token:any){
+    return this.authservice.auth.pipe(
+      switchMap(
+        auth => {
+          return this.http.post(
+            auth._domain+'/fcm/token/',
+            { fcmtoken: token },
+            auth._header
+          )
+        }
+      )
+    );
+  }
 }

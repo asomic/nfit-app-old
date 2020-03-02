@@ -14,6 +14,5 @@ import { ClaseModalPage } from './clase-modal.page';
     FormsModule,
     IonicModule,
   ],
-  declarations: [ClaseModalPage]
 })
 export class ClaseModalPageModule {}

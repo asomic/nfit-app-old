@@ -19,7 +19,7 @@ const { Storage } = Plugins;
 })
 export class LoginPage implements OnInit {
 
-  box: Object;
+  box: any ;
 
   constructor(
     private authService: AuthService,
@@ -30,13 +30,7 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.authService.isAuthenticated.subscribe(isAuth => {
-    //   if(isAuth){
-    //     this.router.navigateByUrl('home/tabs/dashboard');
-    //   } else {
-    //     this.authService.authRecall();
-    //   }
-    // });
+
   }
 
   ionViewWillEnter() {
