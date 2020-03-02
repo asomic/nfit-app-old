@@ -43,6 +43,10 @@ export class ClaseIndexPage implements OnInit {
     this.router.navigate([`/home/tabs/clases/${claseId}`]);
   }
 
+  goToHistory() {
+    this.router.navigate(['/home/tabs/clases/history']);
+  }
+
   goToSelectClaseType() {
     this.router.navigate( ['/home/tabs/clases/clase-type'] );
   }

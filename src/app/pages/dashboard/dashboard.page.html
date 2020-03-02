@@ -8,59 +8,85 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-        pullingIcon=""
-        pullingText=""
-        refreshingSpinner="crescent"
-    >
-    </ion-refresher-content>
-  </ion-refresher>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+            pullingIcon=""
+            pullingText=""
+            refreshingSpinner="crescent"
+        ></ion-refresher-content>
+    </ion-refresher>
 
-  <!-- todayWods -->
-  <div class="section wod-resumen" *ngIf="todayWods">
-    <div class="wod-slide">
+    <!-- todayWods -->
+    <div class="section wod-resumen" *ngIf="todayWods">
+        <div class="wod-slide">
 
-        <div class="card-header">
-            <h1 class="title-section">Rutinas del Día</h1>
+            <div class="card-header">
+                <h1 class="title-section">Rutinas del Día</h1>
+            </div>
+            
+            <div *ngIf="todayWods.length === 0" class="card card-resumen no-shadow">
+                <div class="text-box-resumen no">                    
+                    <p class="center">No hay entrenamientos registrados para hoy.</p>
+                </div>
+            </div>
+
+            <div *ngIf="todayWods.length > 0">
+                <ion-slides pager="true">
+                    <ion-slide *ngFor="let wod of todayWods" class="wod-slide">
+                        <!-- Contenedor -->
+                        <div class="card card-resumen mb-3">
+                            <!-- Caja item -->
+                            <div class="text-box-resumen plan-grid">
+                                <div class="date">
+                                    <div class="item">
+                                        <h1>{{ wod.day }}</h1>
+                                        <h6>{{ wod.month }}</h6>
+                                    </div>
+                                </div>
+                                <div class="data">
+                                    <h1 class="title-section">{{ wod.claseType }}</h1>
+                                    <p  >
+                                        {{wod.rels.stages.featured}}
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="button-confirm ng-star-inserted" (click)="goToWod(wod.id)">
+                                Ver Rutina
+                            </button>
+                        </div>
+                    </ion-slide>
+                </ion-slides>
+            </div>
+
         </div>
-        
-        <div *ngIf="todayWods.length === 0" class="card card-resumen no-shadow">
-            <div class="text-box-resumen no">                    
-                <p class="center">No hay entrenamientos registrados para hoy.</p>
+    </div>
+    <!-- proxima clase -->
+    <div class="section" *ngIf="nextClase.active">
+        <div class="separator"></div>
+        <div class="class-sum-card mb-3" >
+            <div class="card-header">
+                <h1 class="title-section">Tu Próxima Clase</h1>
+            </div>
+            <div class="card-body">
+                <div class="class-item" (click)="goToClase(nextClase?.id)">
+                    <div class="date">
+                        <h1>{{nextClase?.day}}</h1>
+                        <h6>{{nextClase?.month}}</h6>
+                    </div>
+                    <div class="data">
+                        <div class="status " [ngClass]="{'confirmada': nextClase?.rels?.auth_reservation?.status.id == 2, 'reservada': nextClase?.rels?.auth_reservation?.status.id == 1 }" >
+                            <p>{{nextClase?.rels?.auth_reservation?.status.reservation_status}}</p>
+                        </div>
+                        <div class="classname">
+                            <h3>{{nextClase?.typeName}}</h3>
+                        </div>
+                        <div class="info">
+                            <h6>{{nextClase?.start}} - {{nextClase?.end}} hrs</h6>
+                            <p>Realizada por {{nextClase?.coach}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div *ngIf="todayWods.length > 0">
-            <ion-slides pager="true">
-                <ion-slide *ngFor="let wod of todayWods" class="wod-slide">
-                    <!-- Contenedor -->
-                    <div class="card card-resumen mb-3">
-                        <!-- Caja item -->
-                        <div class="text-box-resumen plan-grid">
-                            <!-- <div class="date">
-                                <div class="item">
-                                    <h1>{{ wod.day }}</h1>
-                                    <h6>{{ wod.month }}</h6>
-                                </div>
-                            </div> -->
-                            <div class="data">
-                                <h1 class="title-section">{{ wod.claseType }}</h1>
-                                <p  >
-                                    {{wod.rels.stages.featured}}
-                                </p>
-                            </div>
-                        </div>
-                        <button class="button-confirm ng-star-inserted" (click)="goToWod(wod.id)">
-                            Ver Rutina
-                        </button>
-                    </div>
-                </ion-slide>
-            </ion-slides>
-        </div>
-
     </div>
-
-    <div class="separator"></div>
-  </div>
 </ion-content>

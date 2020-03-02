@@ -29,6 +29,10 @@ const routes: Routes = [
               loadChildren: () => import('../pages/clases/clase-index/clase-index.module').then( m => m.ClaseIndexPageModule)
             },
             {
+              path: 'history',
+              loadChildren: () => import('../pages/clases/clase-history/clase-history.module').then( m => m.ClaseHistoryPageModule)
+            },
+            {
               path: 'clase-type',
               loadChildren: () => import('../pages/clases/select-clase-type/select-clase-type.module').then( m => m.SelectClaseTypePageModule)
             },

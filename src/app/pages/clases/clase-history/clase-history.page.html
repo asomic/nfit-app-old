@@ -1,9 +1,61 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>clase-history</ion-title>
-  </ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home/tabs/clases"></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        <span >Clases Historicas</span>
+    </ion-title>
+  </ion-toolbar>    
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content 
+        pullingIcon=""
+        pullingText=""
+        refreshingSpinner="crescent"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+    <!-- Próximas Clases -->
+  <div class="section">
 
+    <div class="class-sum-card mb-3" *ngIf="pastClases">
+        <!-- <div class="card-header">
+            <h1 class="title-section">Clases Historicas</h1>
+        </div> -->
+        <div class="card-body">
+
+            <div class="class-item" *ngFor="let clase of pastClases" (click)="goToClase(clase?.clase_id)">
+                <div class="date">
+                    <h1>{{clase?.day}}</h1>
+                    <h6>{{clase?.month}}</h6>
+                </div>
+                <div class="data">
+                    <div class="status " [ngClass]="{'confirmada': clase?.rels.auth_reservation.status.id == 2, 'reservada': clase?.rels.auth_reservation.status.id == 1 }" >
+                        <p>{{clase?.rels.auth_reservation.status.reservation_status}}</p>
+                    </div>
+                    <div class="classname">
+                        <h3>{{clase?.typeName}}</h3>
+                    </div>
+                    <div class="info">
+                        <h6>{{clase?.start}} - {{clase?.end}} hrs</h6>
+                        <p>Realizada por {{clase?.coach}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card card-resumen no-shadow" *ngIf="!pastClases">
+        <div class="text-box-resumen no">                    
+            <p class="center">No tienes clases próximas</p>
+        </div>
+    </div>
+
+    <!-- <div class="separator"></div> -->
+
+  </div>
 </ion-content>

@@ -19,7 +19,7 @@ import { ClaseService } from '../../services/clase/clase.service';
 })
 export class DashboardPage implements OnInit {
   todayWods: any
-
+  nextClase: any = [];
   constructor(
     private wodService: WodService,
     private claseService: ClaseService,
@@ -42,6 +42,11 @@ export class DashboardPage implements OnInit {
   ionViewWillEnter() {
     this.wodService.getTodayWods().subscribe( response => {
       this.todayWods = response['data'];
+    })
+
+    this.claseService.getNextClases().subscribe( response => {
+      this.nextClase = response['data'].filter(clase => clase.active)[0];
+      console.log(this.nextClase);
     })
   }
 

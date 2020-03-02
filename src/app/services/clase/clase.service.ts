@@ -60,6 +60,20 @@ export class ClaseService {
     );
   }
 
+    //todas las clases proximas 
+    getPastClases(page:number) {
+      return this.authservice.auth.pipe(
+        switchMap(
+          auth => {
+            return this.http.get(
+              auth._domain+'/clases/historic',
+              auth._header
+            )
+          }
+        )
+      );
+    }
+
   //reservar clase
   claseReserve(id) {
     return this.authservice.auth.pipe(
