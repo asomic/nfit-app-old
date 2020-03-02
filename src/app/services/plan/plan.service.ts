@@ -30,6 +30,19 @@ export class PlanService {
       )
     );
   }
+
+  getPlan(id:any){
+    return this.authservice.auth.pipe(
+      switchMap(
+        auth => {
+          return this.http.get(
+            auth._domain+'/plans/' +id,
+            auth._header
+          )
+        }
+      )
+    );
+  }
   
   actualPlan(){
     return this.authservice.auth.pipe(

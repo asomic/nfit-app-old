@@ -84,7 +84,7 @@
 </div>
 
 
-<div class="section" *ngIf="plans?.lenght">
+<div class="section" *ngIf="plans?.length > 0">
     <div class="separator separator-plan"></div>
     <div class="title-grid">
         <h1 class="title-section">Planes</h1>
@@ -141,7 +141,7 @@
         <!-- Aquí se listan los Planes  -->
         
         <div class="card-plan clickable" 
-             [routerLink]="['/', 'home', 'tabs', 'plans', plan?.id, 'details']"
+             [routerLink]="['/', 'home', 'tabs', 'plans', plan?.id]"
              *ngFor="let plan of filteredPlans"
         >
             <div class="ps-row plan-up" >
