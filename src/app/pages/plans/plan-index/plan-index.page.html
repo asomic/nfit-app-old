@@ -18,7 +18,7 @@
 </ion-refresher>
 
 <div class="section">
-
+    
   <div class="title-grid">
       <h1 class="title-section">Plan Actual</h1>
       
@@ -31,8 +31,8 @@
   </div>
 
   <!-- Si tiene plan activo  -->
-  <div *ngIf="userActualPlan; withoutPlan">
-      <div class="card-plan actual">
+  <div>
+      <div class="card-plan actual" *ngIf="userActualPlan">
           <div class="ps-row plan-up">
               <div class="col-7">
                   <h2>{{ userActualPlan?.rels?.plan.name }}</h2>
@@ -64,6 +64,7 @@
               </div>
           </div>
       </div>
+
       <!-- <button 
           class="button-confirm"
           [routerLink]="['/', 'home', 'tabs', 'plans', userActualPlan?.rels?.plan.id, 'details']"
@@ -71,22 +72,20 @@
       >
           Renovar este Plan
       </button> -->
-  </div>
 
-  <ng-template #withoutPlan >
-      <div class="card-plan no-plan">
-          <p>
-              No tienes un plan activo.<br>
-              Puedes comprar un plan a continuación
-          </p>
-      </div>
-  </ng-template>
+    <div class="card-plan no-plan" *ngIf="!userActualPlan">
+        <p>
+            No tienes un plan activo.<br>
+            Puedes comprar un plan a continuación
+        </p>
+    </div>
+  </div>
 
 </div>
 
-<div class="separator separator-plan"></div>
-    
-<div class="section">
+
+<div class="section" *ngIf="plans?.lenght">
+    <div class="separator separator-plan"></div>
     <div class="title-grid">
         <h1 class="title-section">Planes</h1>
         <div class="option click-ver-filtros">

@@ -24,12 +24,28 @@
           margin-bottom: 2.8em;
         }
       }
+      .button-select {
+        width: 100%;
+        padding: 12px 0;
+        // border-radius: 4px;
+        font-size: 15px;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+        background: var(--ion-black-color);
+        text-align: left;
+        letter-spacing: 0.3px;
+        color: rgba(255, 255, 255, 0.5);
+        // text-indent: 21px;
+      }
       .form-inner {
         background: transparent;
         margin: 0 !important;
         font-family: 'Roboto Condensed', sans-serif;
         .a-input {
           position: relative;
+          ion-icon {
+            color: white;
+            // width: auto;
+          }
           .icon-input-auth {
             position: absolute;
             bottom: 22px;

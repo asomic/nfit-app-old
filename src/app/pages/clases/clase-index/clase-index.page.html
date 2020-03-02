@@ -6,6 +6,11 @@
       <ion-title>
           Mis Clases
       </ion-title>
+      <ion-buttons slot="primary">
+        <ion-button>
+          <ion-icon slot="end" name="list"></ion-icon>
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>    
 </ion-header>
 
@@ -20,13 +25,14 @@
   </ion-refresher>
     <!-- Próximas Clases -->
   <div class="section">
-    <div class="class-sum-card mb-3">
+
+    <div class="class-sum-card mb-3" *ngIf="clase">
         <div class="card-header">
             <h1 class="title-section">Próximas Clases</h1>
         </div>
         <div class="card-body">
 
-            <div class="class-item"   *ngFor="let clase of nextClases" (click)="goToClase(clase?.clase_id)">
+            <div class="class-item" *ngFor="let clase of nextClases" (click)="goToClase(clase?.clase_id)">
                 <div class="date">
                     <h1>{{clase?.day}}</h1>
                     <h6>{{clase?.month}}</h6>
@@ -47,12 +53,23 @@
 
         </div>
     </div>
-    <div class="separator"></div>
+
+    <div class="card card-resumen no-shadow" *ngIf="!clase">
+        <div class="text-box-resumen no">                    
+            <p class="center">No hay rutinas para hoy.</p>
+        </div>
+    </div>
+
+    <!-- <div class="separator"></div> -->
+
   </div>
+  <ion-fab vertical="bottom" slot="fixed" class="button-fix-ios">
+      <div class="reservar" (click)="goToSelectClaseType()">Nueva Reserva</div>
+  </ion-fab>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   <div class="button-fix">
       <button class="reservar" (click)="goToSelectClaseType()">Nueva Reserva</button>
   </div>
-</ion-footer>
+</ion-footer> -->

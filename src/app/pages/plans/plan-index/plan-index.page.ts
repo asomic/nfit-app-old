@@ -12,6 +12,7 @@ export class PlanIndexPage implements OnInit {
   public userActualPlan: any;
   public filteredPlans: any;
   public plans: any;
+  public plans2: any;
   public selectedFilter1 = true;
   public selectedFilter3 = false;
   public selectedFilter5 = false;
@@ -38,11 +39,14 @@ export class PlanIndexPage implements OnInit {
     });
     this.planService.getPlans().subscribe(result => {
       this.plans = result['data'];
+      // this.plans2 = result['data'];
+      console.log(this.plans);
       this.filteredPlans = this.plans.filter(
         plan => (plan.periodId === 1) && (plan.contractable) && (!plan.convenio)
       );
     });
   }
+
 
   planFilter(id) {
     switch (id) {
@@ -79,6 +83,7 @@ export class PlanIndexPage implements OnInit {
         plan => (plan.periodId === id) && (plan.contractable) && (!plan.convenio)
     );
   }
+  
 
 
 }

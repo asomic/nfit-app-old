@@ -7,11 +7,37 @@
               alt="Pura Sangre Crossfit"
           />
       </div>
-      <div>Centro deportivo: {{ box?.name }} <span><button (click)="editBox()" >editar</button></span></div>
+      <!-- <div> -->
+          <!-- Centro deportivo: {{ box?.name }} -->
+          <!-- <span> -->
+      <!-- <button (click)="editBox()" class="button-select">
+            <span class="icon-input-auth icon-auth-mail">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+            </span>
+          Selecciona tu centro Deportivo
+      </button> -->
+
+          <!-- </span> -->
+      <!-- </div> -->
       <form #f="ngForm" (ngSubmit)="onSubmit(f)">
           <div class="form-inner">
               <div class="a-input">
-                  <span class="icon-input-auth icon-auth-mail"></span>
+                  <!-- <span class="icon-input-auth icon-auth-mail"></span> -->
+                  <span class="icon-input-auth icon-auth-mail">
+                      <ion-icon name="arrow-forward-outline"></ion-icon>
+                  </span>
+
+                  <input
+                    (click)="editBox()" 
+                    placeholder="{{ box ? box?.name : 'Selecciona tu centro deportivo' }}"
+                  />
+              </div>
+
+              <div class="a-input">
+                  <!-- <span class="icon-input-auth icon-auth-mail"></span> -->
+                  <span class="icon-input-auth icon-auth-mail">
+                      <ion-icon name="arrow-forward-outline"></ion-icon>
+                  </span>
 
                   <input
                       type="email"
@@ -25,7 +51,9 @@
               </div>
 
               <div class="a-input">
-                  <span class="icon-input-auth icon-auth-pass"></span>
+                <span class="icon-input-auth icon-auth-mail">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                </span>
 
                   <input
                       type="password"

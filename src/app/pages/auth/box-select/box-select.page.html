@@ -1,10 +1,17 @@
-<ion-content>
-  <h1>Selecciona tu centro deportivo </h1>
+<section class="box-select">
+  <h1>
+    Selecciona tu centro deportivo
+  </h1>
   <ion-searchbar ></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let client of clients">
-      <ion-label (click)="storebox(client.box_name,client.sub_domain)">{{client.box_name}}</ion-label>
+      <ion-avatar slot="start">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+      </ion-avatar>
+      <ion-label (click)="storebox(client.box_name,client.sub_domain)">
+        {{client.box_name}}
+      </ion-label>
     </ion-item>
   
   </ion-list>
-  </ion-content>
+</section>

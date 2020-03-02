@@ -114,9 +114,16 @@
     </div>
   </div>
 
+    <ion-fab vertical="bottom" slot="fixed" class="button-fix-ios" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.has) && (clase?.rels.auth_reservation.status.id == 1)">
+        <div class="reservar" (click)="confirmModal()">Confirmar asistencia</div>
+    </ion-fab>
+    <ion-fab vertical="bottom" slot="fixed" class="button-fix-ios" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.can) && (!clase?.rels.auth_reservation.has)">
+        <div class="reservar" (click)="reserveModal()">Reservar esta hora</div>
+    </ion-fab>
+
 </ion-content>
 
-<ion-footer *ngIf="clase" >
+<!-- <ion-footer *ngIf="clase" >
   <div class="button-fix" *ngIf="(clase.active) && (clase.rels.auth_reservation.has) && (clase.rels.auth_reservation.status.id == 1)" >
       <button class="reservar" (click)="confirmModal()" >Confirmar asistencia</button>
   </div>
@@ -124,4 +131,4 @@
   <div class="button-fix" *ngIf="(clase.active) && (clase.rels.auth_reservation.can) && (!clase.rels.auth_reservation.has)">
       <button class="reservar" (click)="reserveModal()">Reservar esta hora</button>
   </div>
-</ion-footer>
+</ion-footer> -->
