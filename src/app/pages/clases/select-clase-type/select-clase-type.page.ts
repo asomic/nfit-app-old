@@ -25,6 +25,13 @@ export class SelectClaseTypePage implements OnInit  {
 
     }
 
+    doRefresh(event) {
+        this.ionViewWillEnter();
+        setTimeout(() => {
+            event.target.complete();
+        }, 1000);
+    }
+
     ionViewWillEnter() {
         let loading = this.loadingCtrl.create({
             spinner: 'crescent'
@@ -37,8 +44,8 @@ export class SelectClaseTypePage implements OnInit  {
 
                     },
                     error => {
+                        alert('error 1001: error obteniendo los datos');
                         loading.dismiss();
-                        
                     }
 
                 )

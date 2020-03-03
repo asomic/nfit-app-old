@@ -46,6 +46,10 @@ export class SelectDayPage  {
                         this.week = respose['data'];
                         loading.dismiss();
 
+                    },
+                    error => {
+                        alert('error 1001: error obteniendo los datos');
+                        loading.dismiss();
                     }
 
                 )
