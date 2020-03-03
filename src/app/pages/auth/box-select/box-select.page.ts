@@ -17,6 +17,7 @@ const { Storage } = Plugins;
 export class BoxSelectPage implements OnInit {
 
   clients:any;
+  filteredClients:any;
 
   constructor(
     // private authService: AuthService,
@@ -34,6 +35,7 @@ export class BoxSelectPage implements OnInit {
     };
     this.http.get(environment.http+'admin'+environment.domain+'/clients-json',  httpOptions).subscribe( response => {
         this.clients = response['data'];
+        this.filteredClients = this.clients;
     });
 
   }
@@ -51,6 +53,27 @@ export class BoxSelectPage implements OnInit {
           'dismissed': true
         });  
     });
+  }
+
+  filterList(evt) {
+    console.log(evt.srcElement.value);
+    const searchTerm = evt.srcElement.value;
+    if (!searchTerm) {
+      this.filteredClients = this.clients;
+      return null;
+    }
+
+    this.filteredClients = this.clients.filter( filtered => {
+      console.log(filtered);
+      if(filtered.box_name && searchTerm) {
+        if (filtered.box_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+
+    console.log( this.filteredClients);
   }
 
   
