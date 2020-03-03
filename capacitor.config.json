@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "com.asomic.nfit",
   "appName": "nfit",
   "bundledWebRuntime": false,
   "npmClient": "npm",

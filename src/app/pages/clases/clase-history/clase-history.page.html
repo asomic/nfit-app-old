@@ -26,8 +26,8 @@
             <h1 class="title-section">Clases Historicas</h1>
         </div> -->
         <div class="card-body">
-
-            <div class="class-item" *ngFor="let clase of pastClases" (click)="goToClase(clase?.clase_id)">
+          <ng-container *ngFor="let clase of pastClases" >
+            <div class="class-item" (click)="goToClase(clase?.clase_id)" *ngIf="!clase?.active">
                 <div class="date">
                     <h1>{{clase?.day}}</h1>
                     <h6>{{clase?.month}}</h6>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-
+          </ng-container>
         </div>
     </div>
 

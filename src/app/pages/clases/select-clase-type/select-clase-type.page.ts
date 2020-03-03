@@ -35,6 +35,10 @@ export class SelectClaseTypePage implements OnInit  {
                         this.claseTypes = respose['data'];
                         loading.dismiss();
 
+                    },
+                    error => {
+                        loading.dismiss();
+                        
                     }
 
                 )

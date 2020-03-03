@@ -20,7 +20,6 @@ const { Storage } = Plugins;
 export class LoginPage implements OnInit {
 
   box: any ;
-
   constructor(
     private authService: AuthService,
     private router: Router,
