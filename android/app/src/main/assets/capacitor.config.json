@@ -1,0 +1,8 @@
+{
+  "appId": "com.asomic.nfit",
+  "appName": "nfit",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
