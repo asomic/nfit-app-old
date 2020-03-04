@@ -25,7 +25,7 @@
         <div class="section grid-hours">
             <div class="item-hour ion-text-center" 
                 *ngFor="let clase of clases"
-                (click)="goToAddConfirm(clase.clase_id, clase?.active)"
+                (click)="goToAddConfirm(clase.id, clase?.active)"
                 [ngClass]="{
                     disabled : (!clase?.active) ||
                     (clase.rels.reservations.count>=clase.quota) ||

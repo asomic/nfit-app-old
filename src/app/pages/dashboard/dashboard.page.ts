@@ -54,7 +54,8 @@ export class DashboardPage implements OnInit {
     this.router.navigate([`/home/tabs/dashboard/wods/${wodId}`]);
   }
 
-  goToClase(claseId: string) {
+  goToClase(claseId: any) {
+    console.log(claseId);
     this.router.navigate([`/home/tabs/clases/${claseId}`]);
   }
 }

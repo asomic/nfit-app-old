@@ -63,7 +63,7 @@ export class ClaseShowPage implements OnInit {
             message: this.clase.dateHuman + ' de ' + this.clase.start +
                      ' a ' + this.clase.end + 'hrs',
             buttonIcon: '/assets/icon/info-brand.svg',
-            claseId: this.clase.clase_id,
+            claseId: this.clase.id,
             buttonActionAdd: true,
         },
         cssClass: 'modal-confirm'
@@ -82,7 +82,7 @@ export class ClaseShowPage implements OnInit {
             title: 'Ceder tu Cupo',
             message: 'Si cedes tu cupo podrás reservar en otro horario',
             buttonIcon: '/assets/icon/info-brand.svg',
-            claseId: this.clase.clase_id,
+            claseId: this.clase.id,
             buttonActionRemove: true,
         },
         cssClass: 'modal-confirm'
@@ -101,7 +101,7 @@ export class ClaseShowPage implements OnInit {
             title: 'Confirmar esta clase',
             message: `${this.clase.dateHuman} de ${this.clase.start} a ${this.clase.end}hrs. No podras cancelar esta accion`,
             buttonIcon: '/assets/icon/info-brand.svg',
-            claseId: this.clase.clase_id,
+            claseId: this.clase.id,
             buttonActionConfirm: true,
         },
         cssClass: 'modal-confirm'

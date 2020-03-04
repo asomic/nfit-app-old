@@ -32,7 +32,7 @@
         </div>
         <div class="card-body">
 
-            <div class="class-item" *ngFor="let clase of nextClases" (click)="goToClase(clase?.clase_id)">
+            <div class="class-item" *ngFor="let clase of nextClases" (click)="goToClase(clase?.id)">
                 <div class="date">
                     <h1>{{clase?.day}}</h1>
                     <h6>{{clase?.month}}</h6>
