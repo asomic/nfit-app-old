@@ -10,109 +10,109 @@
 </ion-header>
 
 <ion-content>
-  <div class="reserva">
-    <!-- refresher  -->
+<!-- refresher  -->
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content 
-          pullingIcon=""
-          pullingText=""
-          refreshingSpinner="crescent"
-      >
-      </ion-refresher-content>
+        <ion-refresher-content 
+        pullingIcon=""
+        pullingText=""
+        refreshingSpinner="crescent"
+        ></ion-refresher-content>
     </ion-refresher>
+    <div class="reserva" *ngIf="clase">
+
 
             <!-- solo si se va a reservar -->
-    <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.can) && (!clase?.rels.auth_reservation.has)">
-      Estás a un paso de reservar
-    </h1>
-    <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase.rels?.auth_reservation.status === 'Pendiente')">
-      Reserva sin Confirmar
-    </h1>
-    <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase.rels?.auth_reservation.status === 'Confirmada')">
-      Reserva Confirmada
-    </h1>
-<!-- info clase -->
-    <div class="section">
-      <div class="class-sum-card ">
-          <div class="card-body">
+        <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.can) && (!clase?.rels.auth_reservation.has)">
+        Estás a un paso de reservar
+        </h1>
+        <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase.rels?.auth_reservation.status === 'Pendiente')">
+        Reserva sin Confirmar
+        </h1>
+        <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase.rels?.auth_reservation.status === 'Confirmada')">
+        Reserva Confirmada
+        </h1>
+    <!-- info clase -->
+        <div class="section">
+        <div class="class-sum-card ">
+            <div class="card-body">
 
-              <div class="class-item no-shadow">
-                  <div class="date">
-                      <img [src]="clase?.rels?.claseType?.icon">
-                      <h6 class="name">{{ clase?.rels?.claseType?.name}}</h6>
-                  </div>
-                  <div class="data">
-                      <div class="classdata">
-                          <h6 class="dateclass">
-                              {{ clase?.dateHuman }}
-                          </h6>
-                          <h4 class="hours">
-                              {{ clase?.start }} - {{ clase?.end }} hrs
-                          </h4>
-                          <p class="teacher">
-                              Realizada por {{ clase?.coach }}
-                          </p>
-                      </div>
-                  </div>
-              </div>
+                <div class="class-item no-shadow">
+                    <div class="date">
+                        <img [src]="clase?.rels?.claseType?.icon">
+                        <h6 class="name">{{ clase?.rels?.claseType?.name}}</h6>
+                    </div>
+                    <div class="data">
+                        <div class="classdata">
+                            <h6 class="dateclass">
+                                {{ clase?.dateHuman }}
+                            </h6>
+                            <h4 class="hours">
+                                {{ clase?.start }} - {{ clase?.end }} hrs
+                            </h4>
+                            <p class="teacher">
+                                Realizada por {{ clase?.coach }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-          </div>
-      </div>
-      <hr class="separator">
-    </div>
-<!-- cupos  -->
-    <div class="cupos" >
-      <h5>Cupos</h5>
+            </div>
+        </div>
+        <hr class="separator">
+        </div>
+    <!-- cupos  -->
+        <div class="cupos" >
+        <h5>Cupos</h5>
 
-      <div class="cupos-wrapper ps-row">
-          <div class="col-5 cupos-item">
-              <div class="status disponibles"></div>{{ clase?.quota - clase?.rels?.reservations.count }} Disponibles
-          </div>
-          
-          <div class="col-7 cupos-item">
-              <div class="status reservados"></div>{{ clase?.rels?.reservations.count }} Reservados
-          </div>
-      </div>
-    </div>
-<!-- boton ceder -->
-    <div *ngIf="clase?.rels?.auth_reservation.status.id === 1" class="buttons-edit-reserva">
-      <button class="button-edit" (click)="openModalCeder()">Ceder cupo</button>
-    </div>
+        <div class="cupos-wrapper ps-row">
+            <div class="col-5 cupos-item">
+                <div class="status disponibles"></div>{{ clase?.quota - clase?.rels?.reservations.count }} Disponibles
+            </div>
+            
+            <div class="col-7 cupos-item">
+                <div class="status reservados"></div>{{ clase?.rels?.reservations.count }} Reservados
+            </div>
+        </div>
+        </div>
+    <!-- boton ceder -->
+        <div *ngIf="clase?.rels?.auth_reservation.status.id === 1" class="buttons-edit-reserva">
+        <button class="button-edit" (click)="openModalCeder()">Ceder cupo</button>
+        </div>
 
-    <hr class="separator">
-    <div class="card card-inscritos">
-      <div class="title">
-          <h5>Inscritos en esta Clase</h5>
-      </div>
-      
-      <div class="content">
-          <div class="ps-row item-inscritos" *ngFor="let reservation of reservations" >
-              <div class="item-img">
-                  <!-- <img src="{{ reservation?.rels.user.avatar }}"
-                      ion-button ion-long-press 
-                      [ngClass]="{ 'image-pressed': varIsPressed }"
-                      (click)="clicked()"
-                      (pressed)="varIsPressed = true"
-                      (pressEnded)="varIsPressed = false"
-                      (longPressed)="beingLongPressed(
-                          reservation?.rels.user.avatar,
-                          reservation?.rels.user.first_name,
-                          reservation?.rels.user.last_name
-                      )"
-                      (pressEnded)="finishLongPress()"/>  -->
-                      <img src="{{ reservation?.rels.user.avatar }}" width="50">
-              </div>
-              <div class="item-data">
-                  <h6>
-                      {{ reservation?.rels.user.first_name }} {{ reservation?.rels.user.last_name }}
-                  </h6>
-                  
-                  <p>{{ reservation?.status }}</p>
-              </div>
-          </div>
-      </div>
+        <hr class="separator">
+        <div class="card card-inscritos">
+        <div class="title">
+            <h5>Inscritos en esta Clase</h5>
+        </div>
+        
+        <div class="content">
+            <div class="ps-row item-inscritos" *ngFor="let reservation of reservations" >
+                <div class="item-img">
+                    <!-- <img src="{{ reservation?.rels.user.avatar }}"
+                        ion-button ion-long-press 
+                        [ngClass]="{ 'image-pressed': varIsPressed }"
+                        (click)="clicked()"
+                        (pressed)="varIsPressed = true"
+                        (pressEnded)="varIsPressed = false"
+                        (longPressed)="beingLongPressed(
+                            reservation?.rels.user.avatar,
+                            reservation?.rels.user.first_name,
+                            reservation?.rels.user.last_name
+                        )"
+                        (pressEnded)="finishLongPress()"/>  -->
+                        <img src="{{ reservation?.rels.user.avatar }}" width="50">
+                </div>
+                <div class="item-data">
+                    <h6>
+                        {{ reservation?.rels.user.first_name }} {{ reservation?.rels.user.last_name }}
+                    </h6>
+                    
+                    <p>{{ reservation?.status }}</p>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
-  </div>
 
     <ion-fab vertical="bottom" slot="fixed" class="button-fix-ios" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.has) && (clase?.rels.auth_reservation.status.id == 1)">
         <div class="reservar" (click)="confirmModal()">Confirmar asistencia</div>

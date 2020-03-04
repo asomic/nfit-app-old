@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 //ionic
-import { ModalController} from '@ionic/angular';
+import { ModalController, LoadingController} from '@ionic/angular';
 //servicios
 import { ClaseService } from '../../../services/clase/clase.service';
 //modals
@@ -25,6 +25,8 @@ export class ClaseShowPage implements OnInit {
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private modalController: ModalController,
+    public loadingCtrl: LoadingController,
+
 
   ) { }
 
@@ -40,19 +42,26 @@ export class ClaseShowPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.reservationPage = 1;
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    let loading = this.loadingCtrl.create({
+      spinner: 'crescent'
+      }).then( loading => {
+        
+        loading.present();
+        this.reservationPage = 1;
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.claseService.getClase(id).subscribe( response => {
-      this.clase = response['data'];
-      console.log(this.clase )
-    })
+        this.claseService.getClase(id).subscribe( response => {
+          this.clase = response['data'];
+          console.log(this.clase )
+          loading.dismiss();
+        })
 
-    this.claseService.getClaseReservations(id, this.reservationPage).subscribe( response => {
-      this.reservations = response['data'];
-      console.log(this.reservations)
-    })
+        this.claseService.getClaseReservations(id, this.reservationPage).subscribe( response => {
+          this.reservations = response['data'];
+          console.log(this.reservations)
+        })
 
+      });
   }
   //modals 
   async reserveModal() {

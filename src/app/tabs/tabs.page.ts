@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 //ionic
 import { Platform, ToastController  } from '@ionic/angular';
 
@@ -26,10 +27,12 @@ export class TabsPage implements OnInit {
     public platform: Platform,
     private userService: UserService,
     public toastController: ToastController,
-
+    private location: Location,
   ) { }
 
   ngOnInit() {
+    this.backButtonEvent();
+    
     PushNotifications.register();
 
     // On success, we should be able to receive notifications
@@ -83,6 +86,17 @@ export class TabsPage implements OnInit {
       ]
     });
     toast.present();
+  }
+
+  backButtonEvent(): void {
+    const sub = this.platform.backButton.subscribeWithPriority(9999, () => {
+      if(this.location.isCurrentPathEqualTo('/home/tabs/dashboard'))
+      {
+        navigator['app'].exitApp();
+      } else {
+        this.location.back();
+      }
+    });
   }
 
 }

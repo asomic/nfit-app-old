@@ -58,4 +58,6 @@ export class DashboardPage implements OnInit {
     console.log(claseId);
     this.router.navigate([`/home/tabs/clases/${claseId}`]);
   }
+
+
 }
