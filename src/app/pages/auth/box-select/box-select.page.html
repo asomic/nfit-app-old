@@ -2,7 +2,7 @@
     <h1>
       Selecciona tu centro deportivo
     </h1>
-    <ion-searchbar (ionChange)="filterList($event)" ></ion-searchbar>
+    <ion-searchbar (ionChange)="filterList($event)" placeholder="Buscar por Nombre"></ion-searchbar>
     <ion-list>
       <ion-item *ngFor="let client of filteredClients">
         <ion-avatar slot="start">

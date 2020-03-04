@@ -88,6 +88,7 @@
   // Color del fondo fondo
   --ion-background-color: #F8F8F8;
   --ion-brand-color: #75FBC6;
+  --ion-brand-alt-color: #E5FF00;
   --ion-black-color: #282C34;
 
   --ion-border-color: none;
@@ -122,15 +123,19 @@ ion-tab-button.tab-selected {
 ion-toolbar {
   --color: white;
   --border-width: 1px;
-  --border-color: white;
+  --border-color: var(--ion-black-color);
   --background: var(--ion-black-color);
   ion-title {
+    font-weight: 700;
     img {
       width: 70px;
     }
   }
   ion-button {
     --color: var(--ion-background-color) !important;
+  }
+  .history-icon {
+    font-size: 24px !important;
   }
 }
 
@@ -211,6 +216,9 @@ ion-content {
   --padding-end: 20px;
   --padding-bottom: 18px;
   --padding-start: 20px;
+  &.pd-bt-extra {
+    --padding-bottom: 40px;
+  }
 }
 
 ion-back-button {
@@ -401,6 +409,14 @@ ion-back-button {
               background: #FE5F55;
               color: white;
             }
+            &.perdida {
+              background: #707580;
+              color: white;
+            }
+            &.consumida {
+              background: var(--ion-brand-alt-color);
+              color: black;
+            }
             &.confirmada {
               background: var(--ion-brand-color);
               color: var(--ion-black-color);
@@ -513,7 +529,7 @@ ion-back-button {
   background-color: var(--ion-black-color);
   width: 100%;
   height: 100%;
-  padding: 28px 22px 22px;
+  padding: 32px 22px 22px;
   h1 {
     color: var(--ion-brand-color);
     font-family: 'Roboto Condensed', sans-serif;
@@ -521,16 +537,27 @@ ion-back-button {
     text-align: center;
     display: block;
     margin: auto;
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     width: 80%;
   }
   ion-searchbar {
     --color: white;
+    --background: #1F232A;
     padding: 0;
     margin-bottom: 8px;
+    input {
+      padding-left: 50px !important;
+    }
+    ion-icon {
+      margin-left: 10px !important;
+    }
   }
   ion-list {
     // --background: var(--ion-black-color);
+    background: var(--ion-black-color);
+  }
+  .searchbar-search-icon.sc-ion-searchbar-md {
+    left: 6px;
   }
   ion-item {
     --background: var(--ion-black-color);
@@ -842,7 +869,7 @@ ion-back-button {
   z-index: 10;
   margin: auto;
   border-radius: 4px;
-  background: linear-gradient(161.62deg, #FC0F85 6.69%, #9300AB 88.08%);
+  // background: linear-gradient(161.62deg, #FC0F85 6.69%, #9300AB 88.08%);
 }
 
 // .clases-cards-wrapper {
@@ -1246,6 +1273,10 @@ ion-back-button {
         background-color: #36AF17;
         color: white;
       }
+      &.finished {
+        background-color: #EC0B43;
+        color: white;
+      }
     }
   }
   .data {
@@ -1257,7 +1288,7 @@ ion-back-button {
       color: #565353;
     }
     .data-desc {
-      padding-top: 30px;
+      // padding-top: 30px;
       padding-right: 28px;
     }
     .data-from {
@@ -1406,15 +1437,10 @@ ion-back-button {
       }
     }
     .todaydisabled {
-      color: white;
-      background: linear-gradient(312deg, #fd87c2, #c97fd5);
-      background-size: 200% 200%;
-      -webkit-animation: buttonGradient 3s ease infinite;
-      -moz-animation: buttonGradient 3s ease infinite;
-      -o-animation: buttonGradient 3s ease infinite;
-      animation: buttonGradient 3s ease infinite;
+      color: var(--ion-black-color);
+      background: rgba(#75FBC6, 0.4);
       p, h1 {
-        color: white;
+        color: rgba(#282C34, 0.4);
       }
     }
   }
@@ -1432,7 +1458,7 @@ ion-back-button {
     margin-bottom: 20px;
     h5 {
       font-weight: 700;
-      font-size: 23px;
+      font-size: 22px;
       margin: 0;
       margin-bottom: 12px;
     }
@@ -1497,7 +1523,7 @@ ion-back-button {
       h5 {
         margin: 0;
         font-weight: 700;
-        font-size: 21px
+        font-size: 22px
       }
     }
     .content {

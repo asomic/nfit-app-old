@@ -8,7 +8,7 @@
       </ion-title>
       <ion-buttons slot="primary">
         <ion-button (click)="goToHistory()" >
-          <ion-icon slot="end" name="list" ></ion-icon>
+          <ion-icon slot="end" name="list" class="history-icon"></ion-icon>
         </ion-button>
       </ion-buttons>
   </ion-toolbar>    
@@ -38,7 +38,7 @@
                     <h6>{{clase?.month}}</h6>
                 </div>
                 <div class="data">
-                    <div class="status " [ngClass]="{'confirmada': clase?.rels.auth_reservation.status.id == 2, 'reservada': clase?.rels.auth_reservation.status.id == 1 }" >
+                    <div class="status " [ngClass]="{'consumida': clase?.rels.auth_reservation.status.id == 3, 'perdida': clase?.rels.auth_reservation.status.id == 4, 'confirmada': clase?.rels.auth_reservation.status.id == 2, 'reservada': clase?.rels.auth_reservation.status.id == 1 }" >
                         <p>{{clase?.rels.auth_reservation.status.reservation_status}}</p>
                     </div>
                     <div class="classname">
