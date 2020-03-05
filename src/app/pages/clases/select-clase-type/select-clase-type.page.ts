@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 //servicios
 import { ClaseService } from '../../../services/clase/clase.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { ClaseService } from '../../../services/clase/clase.service';
 })
 export class SelectClaseTypePage implements OnInit  {
     claseTypes: any;
-
+    claseTypesSubscription: Subscription;
     constructor(
                  private router: Router,
                  public loadingCtrl: LoadingController,
@@ -26,6 +27,7 @@ export class SelectClaseTypePage implements OnInit  {
     }
 
     doRefresh(event) {
+        this.claseTypesSubscription.unsubscribe();
         this.ionViewWillEnter();
         setTimeout(() => {
             event.target.complete();
@@ -37,7 +39,7 @@ export class SelectClaseTypePage implements OnInit  {
             spinner: 'crescent'
         }).then( loading => {
                 loading.present();
-                this.claseService.getClaseTypes().subscribe(
+                this.claseTypesSubscription  = this.claseService.getClaseTypes().subscribe(
                     respose => {
                         this.claseTypes = respose['data'];
                         loading.dismiss();

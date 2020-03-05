@@ -8,6 +8,7 @@ import { ModalController, ToastController  } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 //servicios
 import { ClaseService } from '../../../services/clase/clase.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-clase-modal',
@@ -41,27 +42,28 @@ export class ClaseModalPage {
     }
 
     reserve(id: string ) {
-      this.claseService.claseReserve(id).subscribe( response => {
-        this.viewCtrl.dismiss();
+      let claseReserveSubscription = this.claseService.claseReserve(id).subscribe( response => {
+        this.viewCtrl.dismiss(claseReserveSubscription);
         this.presentToast('Clase reservada'); 
       })
     }
 
     confirm(id: string ) {
-      this.claseService.claseConfirm(id).subscribe( response => {
-        this.viewCtrl.dismiss();
-        this.presentToast('Reserva Confirmada'); 
+      let claseReserveSubscription = this.claseService.claseConfirm(id).subscribe( response => {
+        this.viewCtrl.dismiss(claseReserveSubscription);
+        this.presentToast('Reserva confirmada'); 
       })
     }
 
     remove(id: string) {
-        this.claseService.claseRemove(id).subscribe( response => {
-            this.viewCtrl.dismiss();
-            this.presentToast('Reserva Confirmada'); 
+      let claseRemoveSubscription =   this.claseService.claseRemove(id).subscribe( response => {
+            this.viewCtrl.dismiss(claseRemoveSubscription);
+            this.presentToast('Cupo cedido'); 
         })
     }
 
-    dismiss() {
+    dismiss(subscription: Subscription) {
+      subscription.unsubscribe();
       this.viewCtrl.dismiss();
      }
 

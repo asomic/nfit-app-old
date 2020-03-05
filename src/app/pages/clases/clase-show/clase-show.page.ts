@@ -8,6 +8,7 @@ import { ModalController, LoadingController} from '@ionic/angular';
 import { ClaseService } from '../../../services/clase/clase.service';
 //modals
 import { ClaseModalPage } from '../clase-modal/clase-modal.page';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class ClaseShowPage implements OnInit {
   clase: any;
   reservations: any;
   reservationPage: number;
-
+  getClaseSubscription: Subscription;
+  getClaseReservationsSubscription: Subscription;
   constructor(
     private claseService: ClaseService,
     private router: Router,
@@ -35,6 +37,8 @@ export class ClaseShowPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.getClaseSubscription.unsubscribe();
+    this.getClaseReservationsSubscription.unsubscribe();
     this.ionViewWillEnter();
     setTimeout(() => {
         event.target.complete();
@@ -50,13 +54,19 @@ export class ClaseShowPage implements OnInit {
         this.reservationPage = 1;
         const id = this.activatedRoute.snapshot.paramMap.get('id');
 
-        this.claseService.getClase(id).subscribe( response => {
-          this.clase = response['data'];
-          console.log(this.clase )
-          loading.dismiss();
-        })
+        this.getClaseSubscription = this.claseService.getClase(id).subscribe( 
+          response => {
+            this.clase = response['data'];
+            console.log(this.clase )
+            loading.dismiss();
+          },
+          error => {
+              alert('error 1001: error obteniendo los datos');
+              loading.dismiss();
+          }
+        )
 
-        this.claseService.getClaseReservations(id, this.reservationPage).subscribe( response => {
+        this.getClaseReservationsSubscription = this.claseService.getClaseReservations(id, this.reservationPage).subscribe( response => {
           this.reservations = response['data'];
           console.log(this.reservations)
         })

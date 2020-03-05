@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 //services
 import { ClaseService } from '../../../services/clase/clase.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { ClaseService } from '../../../services/clase/clase.service';
 })
 export class SelectDayPage  {
     public week: any = [];
+    public weekSubscription: Subscription;
 
     constructor( 
                  private router: Router,
@@ -28,6 +30,7 @@ export class SelectDayPage  {
     }
 
     doRefresh(event) {
+        this.weekSubscription.unsubscribe();
         this.ionViewWillEnter();
         setTimeout(() => {
             event.target.complete();
@@ -40,7 +43,7 @@ export class SelectDayPage  {
         }).then( loading => {
                 loading.present();
                 const id = this.activatedRoute.snapshot.paramMap.get('claseTypeId');
-                this.claseService.getClaseTypeWeek(id).subscribe(
+                this.weekSubscription = this.claseService.getClaseTypeWeek(id).subscribe(
                     respose => {
                         console.log(respose);
                         this.week = respose['data'];

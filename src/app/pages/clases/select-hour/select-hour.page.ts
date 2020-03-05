@@ -8,6 +8,7 @@ import { LoadingController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 //services
 import { ClaseService } from '../../../services/clase/clase.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-select-hour',
@@ -16,7 +17,7 @@ import { ClaseService } from '../../../services/clase/clase.service';
 })
 export class SelectHourPage {
     public clases: any = [];
-
+    public clasesSubscription: Subscription;
     constructor( 
                  private router: Router,
                  public activatedRoute: ActivatedRoute,
@@ -25,6 +26,7 @@ export class SelectHourPage {
                 ) { }
 
     doRefresh(event) {
+        this.clasesSubscription.unsubscribe();
         this.ionViewWillEnter();
         setTimeout(() => {
             event.target.complete();
@@ -39,7 +41,7 @@ export class SelectHourPage {
                 const date = this.activatedRoute.snapshot.paramMap.get('date');
 
                 const clasetype = this.activatedRoute.snapshot.paramMap.get('claseTypeId');
-                this.claseService.getClaseTypeHour(clasetype,date).subscribe(
+                this.clasesSubscription = this.claseService.getClaseTypeHour(clasetype,date).subscribe(
                     respose => {
                         console.log(respose);
                         this.clases = respose['data'];

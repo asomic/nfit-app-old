@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 //servicios
 import { PlanService } from '../../../services/plan/plan.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-plan-index',
@@ -10,9 +11,10 @@ import { PlanService } from '../../../services/plan/plan.service';
 })
 export class PlanIndexPage implements OnInit {
   public userActualPlan: any;
+  public userActualPlanSubscription: Subscription;
   public filteredPlans: any;
   public plans: any;
-  public plans2: any;
+  public plansSubscription: Subscription;
   public selectedFilter1 = true;
   public selectedFilter3 = false;
   public selectedFilter5 = false;
@@ -27,6 +29,8 @@ export class PlanIndexPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.userActualPlanSubscription.unsubscribe();
+    this.plansSubscription.unsubscribe();
     this.ionViewWillEnter();
     setTimeout(() => {
         event.target.complete();
@@ -34,10 +38,10 @@ export class PlanIndexPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.planService.actualPlan().subscribe(result => {
+    this.userActualPlanSubscription = this.planService.actualPlan().subscribe(result => {
       this.userActualPlan = result['data'];
     });
-    this.planService.getPlans().subscribe(result => {
+    this.plansSubscription = this.planService.getPlans().subscribe(result => {
       this.plans = result['data'];
       // this.plans2 = result['data'];
       console.log(this.plans);

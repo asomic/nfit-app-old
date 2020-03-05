@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 //servicios
 import { ClaseService } from '../../../services/clase/clase.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-clase-index',
@@ -13,6 +14,7 @@ import { ClaseService } from '../../../services/clase/clase.service';
 export class ClaseIndexPage implements OnInit {
 
   nextClases: any;
+  nextClasesSubscription: Subscription;
   constructor(
     private claseService: ClaseService,
     private router: Router,
@@ -22,6 +24,7 @@ export class ClaseIndexPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.nextClasesSubscription.unsubscribe();
     this.ionViewWillEnter();
     setTimeout(() => {
         event.target.complete();
@@ -29,7 +32,7 @@ export class ClaseIndexPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.claseService.getNextClases().subscribe( response => {
+    this.nextClasesSubscription = this.claseService.getNextClases().subscribe( response => {
       this.nextClases = response['data'].filter(clase => clase.active);
       console.log(this.nextClases);
     })

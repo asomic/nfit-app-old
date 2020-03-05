@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 //servicios
 import { PlanService } from '../../../services/plan/plan.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-plan-show',
@@ -13,7 +14,7 @@ import { PlanService } from '../../../services/plan/plan.service';
 export class PlanShowPage implements OnInit {
 
   plan: any = [];
-
+  planSubscription: Subscription;
   constructor(
     private planService: PlanService,
     public activatedRoute: ActivatedRoute,
@@ -24,6 +25,7 @@ export class PlanShowPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.planSubscription.unsubscribe();
     console.log('refresh');
     this.ionViewWillEnter();
     setTimeout(() => {
@@ -33,7 +35,7 @@ export class PlanShowPage implements OnInit {
 
   ionViewWillEnter(){
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.planService.getPlan(id).subscribe(result => {
+    this.planSubscription = this.planService.getPlan(id).subscribe(result => {
       this.plan = result['data'];
       console.log(this.plan);
     });
