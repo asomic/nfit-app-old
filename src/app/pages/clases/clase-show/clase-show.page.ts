@@ -88,6 +88,7 @@ export class ClaseShowPage implements OnInit {
         cssClass: 'modal-confirm'
     });
     modal.onDidDismiss().then( data => {
+      console.log(data);
       this.router.navigateByUrl('home/tabs/clases');
     });
     return await modal.present();
@@ -107,6 +108,7 @@ export class ClaseShowPage implements OnInit {
         cssClass: 'modal-confirm'
     });
     modal.onDidDismiss().then( data => {
+      console.log(data);
       this.router.navigateByUrl('home/tabs/clases');
     });
     return await modal.present();
@@ -126,7 +128,10 @@ export class ClaseShowPage implements OnInit {
         cssClass: 'modal-confirm'
     });
     modal.onDidDismiss().then( data => {
-      this.router.navigateByUrl('home/tabs/clases');
+      console.log(data.data);
+      if(data.data){
+        this.router.navigateByUrl('home/tabs/clases');
+      }
     });
     return await modal.present();
   }

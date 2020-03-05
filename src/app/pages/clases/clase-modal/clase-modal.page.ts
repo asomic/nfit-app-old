@@ -43,28 +43,27 @@ export class ClaseModalPage {
 
     reserve(id: string ) {
       let claseReserveSubscription = this.claseService.claseReserve(id).subscribe( response => {
-        this.viewCtrl.dismiss(claseReserveSubscription);
+        this.viewCtrl.dismiss(true);
         this.presentToast('Clase reservada'); 
       })
     }
 
     confirm(id: string ) {
       let claseReserveSubscription = this.claseService.claseConfirm(id).subscribe( response => {
-        this.viewCtrl.dismiss(claseReserveSubscription);
+        this.viewCtrl.dismiss(true);
         this.presentToast('Reserva confirmada'); 
       })
     }
 
     remove(id: string) {
       let claseRemoveSubscription =   this.claseService.claseRemove(id).subscribe( response => {
-            this.viewCtrl.dismiss(claseRemoveSubscription);
+            this.viewCtrl.dismiss(true);
             this.presentToast('Cupo cedido'); 
         })
     }
 
-    dismiss(subscription: Subscription) {
-      subscription.unsubscribe();
-      this.viewCtrl.dismiss();
+    dismiss() {
+      this.viewCtrl.dismiss(false);
      }
 
 
