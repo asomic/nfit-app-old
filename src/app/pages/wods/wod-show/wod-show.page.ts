@@ -49,9 +49,14 @@ export class WodShowPage implements OnInit {
         const id = this.activatedRoute.snapshot.paramMap.get('id');
         //obteniendo wod
         this.wodSubscription = this.wodService.getWod(id).subscribe( response => {
-          this.wod = response['data'];
-          loading.dismiss();
-      })
+            this.wod = response['data'];
+            loading.dismiss();
+          },
+          error => {
+            alert('error 1001: error obteniendo los datos');
+            loading.dismiss();
+          }
+        )
       }
     );
   }
