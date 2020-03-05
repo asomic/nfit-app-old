@@ -9,6 +9,7 @@ import { Plugins } from '@capacitor/core';
 
 //servicios
 import { WodService } from '../../../services/wod/wod.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-wod-show',
@@ -18,6 +19,7 @@ import { WodService } from '../../../services/wod/wod.service';
 export class WodShowPage implements OnInit {
 
   wod:any;
+  wodSubscription: Subscription;
   
   constructor(private http: HttpClient,
     private loadingCtrl: LoadingController,
@@ -31,6 +33,7 @@ export class WodShowPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.wodSubscription.unsubscribe();
     this.ionViewWillEnter();
     setTimeout(() => {
         event.target.complete();
@@ -45,7 +48,7 @@ export class WodShowPage implements OnInit {
         loading.present();
         const id = this.activatedRoute.snapshot.paramMap.get('id');
         //obteniendo wod
-        this.wodService.getWod(id).subscribe( response => {
+        this.wodSubscription = this.wodService.getWod(id).subscribe( response => {
           this.wod = response['data'];
           loading.dismiss();
       })

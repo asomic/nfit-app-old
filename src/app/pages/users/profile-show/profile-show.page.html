@@ -7,7 +7,7 @@
   </ion-toolbar>    
 </ion-header>
 
-<ion-content *ngIf="profile">
+<ion-content >
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
             pullingIcon=""
@@ -16,86 +16,85 @@
         >
         </ion-refresher-content>
     </ion-refresher>
-
-    <div class="persona-card" >
-        <div class="ps-row">
-            <!-- <p>Notificación<br>{{ this.mensajeToast }}</p> -->
-            <div class="col-3 persona-item-img">
-                <!-- <app-image-picker (imagePick)="onPickImage($event)"
-                                [AvatarImage]="[profile?.avatar]">
-                </app-image-picker> -->
-                <img class="avatar-container" [src]="profile?.avatar">
-            </div>
-
-            <div class="col-8 ml-1 persona-item-data">
-                <h1 class="persona-nombre">{{ profile?.first_name | titlecase }} {{ profile?.last_name | titlecase }}</h1>
-                
-                <h5 class="persona-plan">{{ profile?.rels.active_plan.plan }}</h5>
-                
-                <p class="persona-vencimiento">{{ profile?.rels.active_plan.expiration }}</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="plan-resumen">
-        <div class="card card-info">
+    <div></div>
+    <ng-container *ngIf="profile">
+        <div class="persona-card" >
             <div class="ps-row">
-                <div class="info-item col-4 ion-text-center">
-                    <div>
-                        <p class="digit">{{ profile?.rels.stats.clases_consumed }}</p>
-                        
-                        <p><b>Clases<br>Asistidas</b></p>
-                    </div>
+                <!-- <p>Notificación<br>{{ this.mensajeToast }}</p> -->
+                <div class="col-3 persona-item-img">
+                    <!-- <app-image-picker (imagePick)="onPickImage($event)"
+                                    [AvatarImage]="[profile?.avatar]">
+                    </app-image-picker> -->
+                    <img class="avatar-container" [src]="profile?.avatar">
                 </div>
-
-                <div class="info-item col-4 ion-text-center">
-                    <div>
-                        <p class="digit">{{ profile?.rels.stats.clases_quantity }}</p>
-                        
-                        <p><b>Clases<br>Restantes</b></p>
-                    </div>
+    
+                <div class="col-8 ml-1 persona-item-data">
+                    <h1 class="persona-nombre">{{ profile?.first_name | titlecase }} {{ profile?.last_name | titlecase }}</h1>
+                    
+                    <h5 class="persona-plan">{{ profile?.rels.active_plan.plan }}</h5>
+                    
+                    <p class="persona-vencimiento">{{ profile?.rels.active_plan.expiration }}</p>
                 </div>
-
-                <div class="info-item col-4 ion-text-center">
-                    <div>
-                        <p class="digit">{{ profile?.rels.stats.clases_lost }}</p>
-                        
-                        <p><b>Clases<br>Perdidas</b></p>
+            </div>
+        </div>
+    
+        <div class="plan-resumen">
+            <div class="card card-info">
+                <div class="ps-row">
+                    <div class="info-item col-4 ion-text-center">
+                        <div>
+                            <p class="digit">{{ profile?.rels.stats.clases_consumed }}</p>
+                            
+                            <p><b>Clases<br>Asistidas</b></p>
+                        </div>
+                    </div>
+    
+                    <div class="info-item col-4 ion-text-center">
+                        <div>
+                            <p class="digit">{{ profile?.rels.stats.clases_quantity }}</p>
+                            
+                            <p><b>Clases<br>Restantes</b></p>
+                        </div>
+                    </div>
+    
+                    <div class="info-item col-4 ion-text-center">
+                        <div>
+                            <p class="digit">{{ profile?.rels.stats.clases_lost }}</p>
+                            
+                            <p><b>Clases<br>Perdidas</b></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="section">
-        <div class="card-datos">
-            <h1 class="title-section">Datos</h1>
-            
-            <div class="datos-item">
-                <h5>Correo</h5>
+    
+        <div class="section">
+            <div class="card-datos">
+                <h1 class="title-section">Datos</h1>
                 
-                <p>{{ profile?.email }}</p>
-            </div>
+                <div class="datos-item">
+                    <h5>Correo</h5>
+                    
+                    <p>{{ profile?.email }}</p>
+                </div>
+                
+                <div class="datos-item">
+                    <h5>Nacimiento</h5>
+    
+                    <p>{{ profile?.birthdate | date: 'dd/MM/yyyy' }}</p>
+                </div>
             
-            <div class="datos-item">
-                <h5>Nacimiento</h5>
-
-                <p>{{ profile?.birthdate | date: 'dd/MM/yyyy' }}</p>
+                <div class="datos-item">
+                    <h5>Dirección</h5>
+                    <p>{{ profile?.address }}</p>
+                </div>
             </div>
-        
-            <div class="datos-item">
-                <h5>Dirección</h5>
-                <p>{{ profile?.address }}</p>
-            </div>
+    
         </div>
+    </ng-container>
 
-        <div class="wrap-logout">
-            <!-- <button class="button-tutorial" (click)="goToHistorial()">Historial de Pagos</button> -->
-        
-            <!-- <button class="button-tutorial" (click)="tutorial()">Ver Tutorial</button> -->
-        
-            <button class="button-logout" (click)="onLogout()">Cerrar Sesión</button>
-        </div>
+    <div class="wrap-logout">
+
+        <button class="button-logout" (click)="onLogout()">Cerrar Sesión</button>
     </div>
-
 </ion-content>

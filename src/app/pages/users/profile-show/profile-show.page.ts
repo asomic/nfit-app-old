@@ -5,6 +5,7 @@ import { ToastController, AlertController, ModalController } from '@ionic/angula
 //servicios
 import { UserService } from '../../../services/user/user.service';
 import { AuthService } from '../../../services/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-show',
@@ -13,6 +14,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 })
 export class ProfileShowPage implements OnInit {
   profile: any;
+  profileSubscription: Subscription;
 
   constructor(
     private userService: UserService,
@@ -24,6 +26,7 @@ export class ProfileShowPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.profileSubscription.unsubscribe();
     this.ionViewWillEnter();
     setTimeout(() => {
         event.target.complete();
@@ -31,7 +34,7 @@ export class ProfileShowPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.userService.profile().subscribe(response => {
+    this.profileSubscription = this.userService.profile().subscribe(response => {
       console.log(response);
       this.profile = response['data'];
     })
