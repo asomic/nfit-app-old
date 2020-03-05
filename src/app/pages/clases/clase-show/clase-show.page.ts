@@ -8,6 +8,7 @@ import { ModalController, LoadingController} from '@ionic/angular';
 import { ClaseService } from '../../../services/clase/clase.service';
 //modals
 import { ClaseModalPage } from '../clase-modal/clase-modal.page';
+import { UserImageModalPage } from '../../../shared/user-image-modal/user-image-modal.page';
 import { Subscription } from 'rxjs';
 
 
@@ -132,6 +133,23 @@ export class ClaseShowPage implements OnInit {
       if(data.data){
         this.router.navigateByUrl('home/tabs/clases');
       }
+    });
+    return await modal.present();
+  }
+
+  async imageClick(avatar) {
+    const imgurl = avatar;
+    const modal = await this.modalController.create({
+        component: UserImageModalPage,
+        componentProps: {
+            title: 'imagen',
+            img: imgurl,
+        },
+        cssClass: 'modal-confirm'
+      });
+    modal.onDidDismiss().then( data => {
+      console.log('cerre image modal');
+      console.log(data);
     });
     return await modal.present();
   }

@@ -8,6 +8,8 @@ import { ClaseShowPageRoutingModule } from './clase-show-routing.module';
 
 import { ClaseShowPage } from './clase-show.page';
 import { ClaseModalPage } from '../clase-modal/clase-modal.page';
+import { UserImageModalPage } from '../../../shared/user-image-modal/user-image-modal.page';
+
 
 
 @NgModule({
@@ -18,7 +20,7 @@ import { ClaseModalPage } from '../clase-modal/clase-modal.page';
     ClaseShowPageRoutingModule,
     
   ],
-  declarations: [ClaseShowPage, ClaseModalPage],
-  entryComponents: [ClaseModalPage]
+  declarations: [ClaseShowPage, ClaseModalPage, UserImageModalPage],
+  entryComponents: [ClaseModalPage, UserImageModalPage]
 })
 export class ClaseShowPageModule {}

@@ -87,7 +87,7 @@
         
         <div class="content">
             <div class="ps-row item-inscritos" *ngFor="let reservation of reservations" >
-                <div class="item-img">
+                <div class="item-img" (click)='imageClick(reservation?.rels.user.avatar)'>
                     <!-- <img src="{{ reservation?.rels.user.avatar }}"
                         ion-button ion-long-press 
                         [ngClass]="{ 'image-pressed': varIsPressed }"

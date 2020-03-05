@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user-image-modal</ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- <ion-content class="image-container">
+  <ion-slides #slider [options]="sliderOpts">
+      <ion-slide>
+          <ion-card style="background: rgb(255,255,255);">
+              <ion-card-header>
+                  <ion-card-title>
+                      <p class="the-user">test</p>
+                  </ion-card-title>
+              </ion-card-header>
+              
+              <ion-card-content>
+                    <img src="https://i.picsum.photos/id/154/600/600.jpg"/>
+              </ion-card-content>
+          </ion-card>
+      </ion-slide>
+  </ion-slides>
+  <div class="layer-blur">
+  </div>
+</ion-content> -->
 
-<ion-content>
+<ion-content  [ngStyle]="{'background-image': this.prod,'background-size': 'cover'}">
 
 </ion-content>

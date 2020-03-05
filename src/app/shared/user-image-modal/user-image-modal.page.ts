@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-image-modal.page.scss'],
 })
 export class UserImageModalPage implements OnInit {
-
+  img;
+  prod;
   constructor() { }
 
   ngOnInit() {
+    console.log(this.img);
+    console.log("url('"+ this.img +"')");
+    this.prod = "url('"+ this.img +"')";
+    console.log(this.prod);
   }
 
 }
