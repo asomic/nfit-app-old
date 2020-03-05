@@ -23,6 +23,8 @@ export class AuthService {
 
   private _auth = new BehaviorSubject<Auth>(null);
   authState = new BehaviorSubject(false);
+  authRefreshing: boolean = false;
+  count: number = 0;
 
   constructor(
     private http: HttpClient,
@@ -31,6 +33,7 @@ export class AuthService {
   ) { }
 
   public get auth() {
+
     return this._auth.asObservable().pipe(
       map(user => {
         if (user) {
@@ -49,7 +52,7 @@ export class AuthService {
     return this._auth.asObservable().pipe(map(auth => {
       if (auth) {
         console.log(true);
-        return true;
+        return true
       } else {
         console.log(false);
         return false;
@@ -73,7 +76,6 @@ export class AuthService {
     const domain : string = environment.http+subdomain+environment.domain;
     const response = this.http.post(domain+'/oauth/token', data, httpOptions);
     return response.pipe(map( response => {
-                  console.log(response);
                   const httpOptions = {
                     headers: new HttpHeaders({
                       Authorization: 'Bearer ' + response['access_token']
@@ -101,6 +103,7 @@ export class AuthService {
   }
 
   authRecall() {
+
     console.log('auth recall');
     return from(Plugins.Storage.get({ key: "auth" })).pipe(
       map(storasgeData => {
@@ -116,7 +119,7 @@ export class AuthService {
           })
         };
         const auth = new Auth(
-          parsedData['email'],
+          parsedData['_email'],
           parsedData['_token'],
           parsedData['_refreshToken'],
           parsedData['_tokenExpirationDate'],
@@ -141,16 +144,10 @@ export class AuthService {
     this.loadingCtrl.create({ keyboardClose: true, spinner: 'crescent'})
         .then(loadingEl => {
             loadingEl.present();
-            console.log(this.auth);
-            console.log(this._auth);
             const auth = this._auth.next(null);
-            console.log(this.auth);
-            console.log(this._auth);
             Plugins.Storage.remove({ key: "auth" }).then(result => {
-              console.log('auth');
-              console.log(result);
               if (auth == null) {
-                console.log('redirigiendo');
+
                 this.router.navigateByUrl('/login');
                 loadingEl.dismiss();
               }
@@ -158,7 +155,114 @@ export class AuthService {
 
         }
     );
-}
+  }
+
+  authRefresh() {
+    
+    console.log('authRefreshing: '+this.authRefreshing);
+    console.log('auth refresh_token');
+    if(!this.authRefreshing){
+      Plugins.Storage.get({ key: "auth" }).then(storasgeData =>{
+        if (!storasgeData || !storasgeData.value) {
+         this.router.navigateByUrl('/login');
+        }
+        const parsedData = JSON.parse(storasgeData.value);
+        const data = JSON.stringify({
+          grant_type: 'refresh_token',
+          refresh_token: parsedData['_refreshToken'],
+          client_id: 1,
+          client_secret: environment.apikey,
+        });
+
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        this.authRefreshing = true;
+        this.http.post(parsedData['_domain']+'/oauth/token', data, httpOptions).subscribe(
+          response => {
+            const httpOptions = {
+              headers: new HttpHeaders({
+                Authorization: 'Bearer ' + response['access_token']
+              })
+            };
+            this._auth.next(
+              new Auth(
+                parsedData['_email'],
+                response['access_token'],
+                response['refresh_token'],
+                response['expires_in'],
+                parsedData['_domain'],
+                httpOptions
+              )
+            )
+            // console.log(this._auth);
+            this.storeUserData(this._auth.value);
+            this.authRefreshing = false;
+          },
+          error => {
+            console.log('error refresh')
+            console.log(error);
+            this.router.navigateByUrl('/login');
+            this.authRefreshing = false;
+          }
+        );
+      
+      }
+    )
+    } else {
+      console.log(' se esta refrescando');
+    }
+  }
+
+  authRefresh2() {
+    console.log('auth recall');
+    return from(Plugins.Storage.get({ key: "auth" })).pipe(
+      map(storasgeData => {
+        if (!storasgeData || !storasgeData.value) {
+          return null;
+        }
+        const parsedData = JSON.parse(storasgeData.value);
+        const data = JSON.stringify({
+          grant_type: 'refresh_token',
+          refresh_token: parsedData['_refreshToken'],
+          client_id: 1,
+          client_secret: environment.apikey,
+        });
+        const response = this.http.post(parsedData['_refreshToken']+'/oauth/token', data, parsedData['_header']);
+        return response.pipe(map( response => {
+          const httpOptions = {
+            headers: new HttpHeaders({
+              Authorization: 'Bearer ' + response['access_token']
+            })
+          };
+          
+          this._auth.next(
+            new Auth(
+              parsedData['_email'],
+              response['access_token'],
+              response['refresh_token'],
+              response['expires_in'],
+              parsedData['_domain'],
+              httpOptions
+            )
+          )
+          // console.log(this._auth);
+          this.storeUserData(this._auth.value);
+
+          return this._auth.value;
+          }))
+      }),
+
+    );
+  }
+
+  validateToken(auth: Auth){
+    return false;
+  }
+
+  public get refreshToken() {
+    return this._auth.value._refreshToken;
+  }
 
 
 }

@@ -19,7 +19,9 @@ export class AuthGuard implements CanLoad {
     take(1),
     switchMap(
       isAuth => {
+        console.log(isAuth);
         if(!isAuth) {
+          console.log('etre');
           return this.authService.authRecall();
         } else {
           return of(isAuth);

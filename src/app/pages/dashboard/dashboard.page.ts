@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, tap , take} from 'rxjs/operators';
 
 
 
@@ -11,6 +12,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //servicios
 import { WodService } from '../../services/wod/wod.service';
 import { ClaseService } from '../../services/clase/clase.service';
+//services
+import { AuthService } from '../../services/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,9 +24,12 @@ import { ClaseService } from '../../services/clase/clase.service';
 export class DashboardPage implements OnInit {
   todayWods: any
   nextClase: any = [];
+  wodSubscription: Subscription;
+  nextClaseSubscription: Subscription;
   constructor(
     private wodService: WodService,
     private claseService: ClaseService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -31,6 +38,8 @@ export class DashboardPage implements OnInit {
   }
 
   doRefresh(event) {
+    this.wodSubscription.unsubscribe();
+    this.nextClaseSubscription.unsubscribe();
     console.log('refresh');
     this.ionViewWillEnter();
     setTimeout(() => {
@@ -40,14 +49,27 @@ export class DashboardPage implements OnInit {
 
 
   ionViewWillEnter() {
-    this.wodService.getTodayWods().subscribe( response => {
-      this.todayWods = response['data'];
-    })
+    //  this.wodService.getTodayWods().pipe( 
+    //   take(1),
+    //   map(
+    //     response => {
+    //       console.log();
+    //       this.todayWods = response['data'];
+    //     }
+    //   )
+    // );
+    this.wodSubscription = this.wodService.getTodayWods().subscribe( 
+      response => {
+        this.todayWods = response['data'];
+      }
+    )
 
-    this.claseService.getNextClases().subscribe( response => {
-      this.nextClase = response['data'].filter(clase => clase.active)[0];
-      console.log(this.nextClase);
-    })
+    this.nextClaseSubscription = this.claseService.getNextClases().subscribe( 
+      response => {
+        this.nextClase = response['data'].filter(clase => clase.active)[0];
+      }
+    )
+
   }
 
   goToWod(wodId: any ) {
@@ -57,6 +79,12 @@ export class DashboardPage implements OnInit {
   goToClase(claseId: any) {
     console.log(claseId);
     this.router.navigate([`/home/tabs/clases/${claseId}`]);
+  }
+
+  refreshTest() {
+    console.log('clicked')
+    this.authService.authRefresh()
+   // this.authService.authRefresh2()
   }
 
 

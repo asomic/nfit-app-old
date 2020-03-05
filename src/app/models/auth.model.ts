@@ -1,7 +1,7 @@
 export class Auth {
     /** public variables to be accessed from the outside */
     constructor(
-        public email: string,
+        public _email: string,
         public _token: string,
         public _refreshToken: string,
         public _tokenExpirationDate: string,
@@ -36,5 +36,12 @@ export class Auth {
             return null;
         }
         return this._header;
+    }
+
+    get email() {
+        if ( !this.email ) {
+            return null;
+        }
+        return this.email;
     }
 }
