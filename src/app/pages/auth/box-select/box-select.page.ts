@@ -33,9 +33,10 @@ export class BoxSelectPage implements OnInit {
     const httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    this.http.get(environment.http+'admin'+environment.domain+'/clients-json',  httpOptions).subscribe( response => {
+    let boxSubscription =  this.http.get(environment.http+'admin'+environment.domain+'/clients-json',  httpOptions).subscribe( response => {
         this.clients = response['data'];
         this.filteredClients = this.clients;
+        boxSubscription.unsubscribe();
     });
 
   }

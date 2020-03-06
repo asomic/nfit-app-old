@@ -38,6 +38,7 @@ export class PlanShowPage implements OnInit {
     this.planSubscription = this.planService.getPlan(id).subscribe(result => {
       this.plan = result['data'];
       console.log(this.plan);
+      this.planSubscription.unsubscribe();
     });
   }
 

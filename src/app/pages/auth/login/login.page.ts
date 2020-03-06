@@ -82,18 +82,19 @@ export class LoginPage implements OnInit {
         loading.present();
         const email = form.value.email;
         const password = form.value.password;
-        this.authService.authenticate(email,password,this.box['subdomain'] ).subscribe(authModel => {
+        let authSubscription = this.authService.authenticate(email,password,this.box['subdomain'] ).subscribe(authModel => {
           if(authModel.token){
             loading.dismiss();
             this.router.navigateByUrl('home/tabs/dashboard');
           } else {
             console.log('error auth.token');
           }
-
+          authSubscription.unsubscribe();
         },
           err => {
             console.log('error general');
             loading.dismiss();
+            authSubscription.unsubscribe();
         })
       }
     );

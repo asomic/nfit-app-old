@@ -35,6 +35,7 @@ export class ClaseIndexPage implements OnInit {
     this.nextClasesSubscription = this.claseService.getNextClases().subscribe( response => {
       this.nextClases = response['data'].filter(clase => clase.active);
       console.log(this.nextClases);
+      this.nextClasesSubscription.unsubscribe();
     })
   }
 

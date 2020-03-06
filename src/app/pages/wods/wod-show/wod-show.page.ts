@@ -51,10 +51,12 @@ export class WodShowPage implements OnInit {
         this.wodSubscription = this.wodService.getWod(id).subscribe( response => {
             this.wod = response['data'];
             loading.dismiss();
+            this.wodSubscription.unsubscribe();
           },
           error => {
             alert('error 1001: error obteniendo los datos');
             loading.dismiss();
+            this.wodSubscription.unsubscribe();
           }
         )
       }

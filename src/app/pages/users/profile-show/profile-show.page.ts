@@ -37,6 +37,7 @@ export class ProfileShowPage implements OnInit {
     this.profileSubscription = this.userService.profile().subscribe(response => {
       console.log(response);
       this.profile = response['data'];
+      this.profileSubscription.unsubscribe();
     })
   }
 

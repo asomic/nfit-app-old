@@ -46,10 +46,12 @@ export class SelectHourPage {
                         console.log(respose);
                         this.clases = respose['data'];
                         loading.dismiss();
+                        this.clasesSubscription.unsubscribe();
                     },
                     error => {
                         alert('error 1001: error obteniendo los datos');
                         loading.dismiss();
+                        this.clasesSubscription.unsubscribe();
                     }
 
                 )

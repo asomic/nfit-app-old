@@ -61,12 +61,14 @@ export class DashboardPage implements OnInit {
     this.wodSubscription = this.wodService.getTodayWods().subscribe( 
       response => {
         this.todayWods = response['data'];
+        this.wodSubscription.unsubscribe();
       }
     )
 
     this.nextClaseSubscription = this.claseService.getNextClases().subscribe( 
       response => {
         this.nextClase = response['data'].filter(clase => clase.active)[0];
+        this.nextClaseSubscription.unsubscribe();
       }
     )
 

@@ -43,11 +43,12 @@ export class SelectClaseTypePage implements OnInit  {
                     respose => {
                         this.claseTypes = respose['data'];
                         loading.dismiss();
-
+                        this.claseTypesSubscription.unsubscribe();
                     },
                     error => {
                         alert('error 1001: error obteniendo los datos');
                         loading.dismiss();
+                        this.claseTypesSubscription.unsubscribe();
                     }
 
                 )

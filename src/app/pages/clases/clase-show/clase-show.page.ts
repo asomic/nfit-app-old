@@ -29,8 +29,7 @@ export class ClaseShowPage implements OnInit {
     public activatedRoute: ActivatedRoute,
     private modalController: ModalController,
     public loadingCtrl: LoadingController,
-
-
+    
   ) { }
 
   ngOnInit() {
@@ -47,6 +46,7 @@ export class ClaseShowPage implements OnInit {
   }
 
   ionViewWillEnter() {
+
     let loading = this.loadingCtrl.create({
       spinner: 'crescent'
       }).then( loading => {
@@ -57,19 +57,22 @@ export class ClaseShowPage implements OnInit {
 
         this.getClaseSubscription = this.claseService.getClase(id).subscribe( 
           response => {
-            this.clase = response['data'];
-            console.log(this.clase )
-            loading.dismiss();
+              this.clase = response['data'];
+              console.log(this.clase )
+              loading.dismiss();
+              this.getClaseSubscription.unsubscribe();
           },
           error => {
               alert('error 1001: error obteniendo los datos');
               loading.dismiss();
+              this.getClaseSubscription.unsubscribe();
           }
         )
 
         this.getClaseReservationsSubscription = this.claseService.getClaseReservations(id, this.reservationPage).subscribe( response => {
           this.reservations = response['data'];
-          console.log(this.reservations)
+          console.log(this.reservations);
+          this.getClaseReservationsSubscription.unsubscribe();
         })
 
       });

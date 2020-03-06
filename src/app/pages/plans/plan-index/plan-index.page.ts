@@ -40,6 +40,7 @@ export class PlanIndexPage implements OnInit {
   ionViewWillEnter() {
     this.userActualPlanSubscription = this.planService.actualPlan().subscribe(result => {
       this.userActualPlan = result['data'];
+      this.userActualPlanSubscription.unsubscribe();
     });
     this.plansSubscription = this.planService.getPlans().subscribe(result => {
       this.plans = result['data'];
@@ -48,6 +49,7 @@ export class PlanIndexPage implements OnInit {
       this.filteredPlans = this.plans.filter(
         plan => (plan.periodId === 1) && (plan.contractable) && (!plan.convenio)
       );
+      this.plansSubscription.unsubscribe();
     });
   }
 

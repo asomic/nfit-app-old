@@ -38,6 +38,7 @@ export class ClaseHistoryPage implements OnInit {
       this.pastClases = response['data'];
       console.log('historico');
       console.log(this.pastClases);
+      this.pastClasesSubscription.unsubscribe();
     })
   }
 

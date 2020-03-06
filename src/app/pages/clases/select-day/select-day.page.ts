@@ -48,11 +48,13 @@ export class SelectDayPage  {
                         console.log(respose);
                         this.week = respose['data'];
                         loading.dismiss();
+                        this.weekSubscription.unsubscribe()
 
                     },
                     error => {
-                        alert('error 1001: error obteniendo los datos');
+                        alert('ERROR 1001: Error obteniendo los datos');
                         loading.dismiss();
+                        this.weekSubscription.unsubscribe()
                     }
 
                 )
