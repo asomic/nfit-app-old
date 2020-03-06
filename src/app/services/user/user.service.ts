@@ -42,4 +42,18 @@ export class UserService {
       )
     );
   }
+
+  changeAvatar(input: FormData){
+    return this.authservice.auth.pipe(
+      switchMap(
+        auth => {
+          return this.http.post(
+            auth._domain+'/profile/image',
+            input,
+            auth._header
+          )
+        }
+      )
+    );
+  }
 }

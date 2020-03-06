@@ -1,4 +1,6 @@
+//angular
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 //ionic 
 import { ToastController, AlertController, ModalController } from '@ionic/angular';
 
@@ -20,6 +22,7 @@ export class ProfileShowPage implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private alertCtrl: AlertController,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -63,6 +66,10 @@ export class ProfileShowPage implements OnInit {
     });
 
     await alert.present();
+}
+
+edit(){
+  this.router.navigateByUrl('home/tabs/profile/edit');
 }
   
 }
