@@ -23,7 +23,10 @@ const routes: Routes = [
     path: 'box-select',
     loadChildren: () => import('./pages/auth/box-select/box-select.module').then( m => m.BoxSelectPageModule)
   },
-
+  {
+    path: 'forgot',
+    loadChildren: () => import('./pages/auth/forgot/forgot.module').then( m => m.ForgotPageModule),
+  },
 
 
 

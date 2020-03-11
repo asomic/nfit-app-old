@@ -108,7 +108,7 @@ export class ForgotPage {
         // );
     }
 
-    // backToLogin() {
-    //     this.router.navigateByUrl('/auth/login');
-    // }
+    backToLogin() {
+        this.router.navigateByUrl('/login');
+    }
 }
