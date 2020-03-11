@@ -102,7 +102,9 @@ export class ProfileEditPage implements OnInit {
 
     let changeAvatarSubscription = this.userService.changeAvatar(avatar).subscribe(response => {
       console.log(response);
+
       changeAvatarSubscription.unsubscribe();
+      this.ionViewWillEnter();
     })
 
     // Plugins.Storage.get({ key: 'authData' }).then((authData) => {

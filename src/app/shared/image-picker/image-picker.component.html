@@ -1,7 +1,10 @@
 <div (click)="onPickImage()">
-    <div class="avatar-container">
+    <div class="persona-card">
         <!-- <img class="persona-avatar" *ngIf="imageClean != null; else igualANull" [src]="image"> -->
-        <img class="persona-avatar" [src]="[AvatarImage]">
+    <div class="persona-item-img">
+        <img class="avatar-container" [src]="[AvatarImage]">
+    </div>
+
         <!-- <ng-template>
             <img class="persona-avatar" [src]="'assets/img/default_user.png'">
         </ng-template> -->
@@ -13,8 +16,8 @@
             (change)="onFileChosen($event)"
         />
     </div>
-
+<!-- 
     <div>
         <h5 class="persona-cambiar-foto-perfil">Cambiar</h5>
-    </div>
+    </div> -->
 </div>
