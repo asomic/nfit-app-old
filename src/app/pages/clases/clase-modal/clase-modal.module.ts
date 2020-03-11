@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 // import { ClaseModalPageRoutingModule } from './clase-modal-routing.module';
 
-import { ClaseModalPage } from './clase-modal.page';
 
 @NgModule({
   imports: [

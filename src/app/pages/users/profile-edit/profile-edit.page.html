@@ -11,6 +11,9 @@
   <div class="persona-card" >
     <div class="persona-item-img">
       <img class="avatar-container" [src]="profile?.avatar">
+      <app-image-picker (imagePick)="onPickImage($event)"
+      [AvatarImage]="[profile?.avatar]">
+      </app-image-picker> 
     </div>
   </div>
 

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProfileEditPageRoutingModule } from './profile-edit-routing.module';
 
 import { ProfileEditPage } from './profile-edit.page';
+import { ImagePickerComponent } from '../../../shared/image-picker/image-picker.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ProfileEditPage } from './profile-edit.page';
     IonicModule,
     ProfileEditPageRoutingModule
   ],
-  declarations: [ProfileEditPage]
+  declarations: [ProfileEditPage, ImagePickerComponent]
 })
 export class ProfileEditPageModule {}
