@@ -92,12 +92,26 @@ export class LoginPage implements OnInit {
           authSubscription.unsubscribe();
         },
           err => {
+
             console.log('error general');
+            console.log(err);
+
             loading.dismiss();
             authSubscription.unsubscribe();
+            this.authAlert(err.error.error,err.error.message);
         })
       }
     );
+  }
+
+  async authAlert(header:string, message:string) {
+    const alert = await this.alertCtrl.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   

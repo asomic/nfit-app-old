@@ -60,6 +60,29 @@ export class AuthService {
     }));    
   }
 
+  forgot(email , subdomain) {
+
+    const data = JSON.stringify({
+      email: email,
+    });
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    const domain : string = environment.http+subdomain+environment.domain;
+    return  this.http.post(domain+'/password/reset', data, httpOptions).pipe(map(
+      result => {
+        console.log(result);
+        return true;
+      },
+      error => {
+        console.log(error);
+        return false;
+      }
+    ));
+
+  }
+
   authenticate(email, password, subdomain) {
 
     const data = JSON.stringify({
