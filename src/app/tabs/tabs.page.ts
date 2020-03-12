@@ -14,6 +14,7 @@ const { PushNotifications } = Plugins;
 
 //services
 import { UserService } from '../services/user/user.service';
+// import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -28,6 +29,7 @@ export class TabsPage implements OnInit {
     private userService: UserService,
     public toastController: ToastController,
     private location: Location,
+    // private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -90,7 +92,7 @@ export class TabsPage implements OnInit {
 
   backButtonEvent(): void {
     const sub = this.platform.backButton.subscribeWithPriority(9999, () => {
-      if(this.location.isCurrentPathEqualTo('/home/tabs/dashboard'))
+      if(this.location.isCurrentPathEqualTo('/home/tabs/dashboard') || this.location.isCurrentPathEqualTo(''))
       {
         navigator['app'].exitApp();
       } else {
