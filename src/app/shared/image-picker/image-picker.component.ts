@@ -72,12 +72,11 @@ export class ImagePickerComponent implements OnInit {
         if (value) {
             Plugins.Camera.getPhoto({
                 quality: 50,
-                // Whether to allow the user to crop or make small edits (platform specific)
                 resultType: CameraResultType.Base64,
                 saveToGallery: true,
                 allowEditing: true,
-                width: 320,
-                // height: 320,
+                width: 640,
+                height: 640,
                 correctOrientation: true,
                 source: value
             }).then(image => {
