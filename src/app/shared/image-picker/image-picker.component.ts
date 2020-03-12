@@ -71,12 +71,11 @@ export class ImagePickerComponent implements OnInit {
         console.log('llegue al metodo escogido');
         if (value) {
             Plugins.Camera.getPhoto({
-                quality: 50,
+                quality: 90,
                 resultType: CameraResultType.Base64,
                 saveToGallery: true,
                 allowEditing: true,
-                width: 640,
-                height: 640,
+                width: 720,
                 correctOrientation: true,
                 source: value
             }).then(image => {
