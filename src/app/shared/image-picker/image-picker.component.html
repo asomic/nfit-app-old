@@ -1,4 +1,4 @@
-<div (click)="onPickImage()">
+<div>
     <div class="persona-card">
         <!-- <img class="persona-avatar" *ngIf="imageClean != null; else igualANull" [src]="image"> -->
     <div class="persona-item-img">
@@ -16,6 +16,10 @@
             (change)="onFileChosen($event)"
         />
     </div>
+
+    <div class="boton-editar-avatar" (click)="onPickImage()">
+        <p>Cambiar Imágen</p>
+      </div>
 <!-- 
     <div>
         <h5 class="persona-cambiar-foto-perfil">Cambiar</h5>

@@ -9,9 +9,16 @@
 
 <ion-content>
 
-      <app-image-picker (imagePick)="onPickImage($event)"
-      [AvatarImage]="[profile?.avatar]">
-      </app-image-picker> 
+      <div class="avatar-edit">
+
+        <app-image-picker 
+          (imagePick)="onPickImage($event)"
+          [AvatarImage]="[profile?.avatar]">
+        </app-image-picker>
+
+        
+        
+      </div>
 
 <!-- 
   <div class="wrap-logout">
