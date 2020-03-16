@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B804C36BB09A13C5A02E7A3 /* Pods_NFIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2432DCFEF3E89081B3903C90 /* Pods_NFIT.framework */; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
+		4D5ABB9A0B37776AF5F4559D /* Pods_NFIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542F68F62CE0C234D5519AF7 /* Pods_NFIT.framework */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
 		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
@@ -18,7 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2432DCFEF3E89081B3903C90 /* Pods_NFIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* NFIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NFIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -26,11 +25,12 @@
 		504EC30E1FED79650016851F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = SOURCE_ROOT; };
+		542F68F62CE0C234D5519AF7 /* Pods_NFIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NFIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58560B4C2420155800F7E349 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		58560B4D2420155900F7E349 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5863E3F4241BF80C006F205E /* NFIT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NFIT.entitlements; sourceTree = "<group>"; };
-		58B1A8E2241C293000ECC284 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/Main.storyboard; sourceTree = "<group>"; };
-		58B1A8E3241C293000ECC284 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8B9E70A220EEFACD19FE2E91 /* Pods-NFIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFIT.debug.xcconfig"; path = "Target Support Files/Pods-NFIT/Pods-NFIT.debug.xcconfig"; sourceTree = "<group>"; };
-		E59C73978C1B8CFDFA0FA40C /* Pods-NFIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFIT.release.xcconfig"; path = "Target Support Files/Pods-NFIT/Pods-NFIT.release.xcconfig"; sourceTree = "<group>"; };
+		83BD7AEBF3B4A71B705B87D6 /* Pods-NFIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFIT.release.xcconfig"; path = "Target Support Files/Pods-NFIT/Pods-NFIT.release.xcconfig"; sourceTree = "<group>"; };
+		F8BDADDCADBFB52600BA3610 /* Pods-NFIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NFIT.debug.xcconfig"; path = "Target Support Files/Pods-NFIT/Pods-NFIT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B804C36BB09A13C5A02E7A3 /* Pods_NFIT.framework in Frameworks */,
+				4D5ABB9A0B37776AF5F4559D /* Pods_NFIT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,8 +48,8 @@
 		42FB7A87BEE46BD31F224600 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8B9E70A220EEFACD19FE2E91 /* Pods-NFIT.debug.xcconfig */,
-				E59C73978C1B8CFDFA0FA40C /* Pods-NFIT.release.xcconfig */,
+				F8BDADDCADBFB52600BA3610 /* Pods-NFIT.debug.xcconfig */,
+				83BD7AEBF3B4A71B705B87D6 /* Pods-NFIT.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 				504EC3061FED79650016851F /* App */,
 				504EC3051FED79650016851F /* Products */,
 				42FB7A87BEE46BD31F224600 /* Pods */,
-				7AE273C454964839C2A3D35E /* Frameworks */,
+				B4520CF8F78AF2D8A7BC2F89 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,10 +88,10 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		7AE273C454964839C2A3D35E /* Frameworks */ = {
+		B4520CF8F78AF2D8A7BC2F89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2432DCFEF3E89081B3903C90 /* Pods_NFIT.framework */,
+				542F68F62CE0C234D5519AF7 /* Pods_NFIT.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,11 +103,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "NFIT" */;
 			buildPhases = (
-				71332A82CB592BF4B5E35CA2 /* [CP] Check Pods Manifest.lock */,
+				39777BCBBCE53B4F528FAEB6 /* [CP] Check Pods Manifest.lock */,
 				504EC3001FED79650016851F /* Sources */,
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
-				94CB49D463576C3A17672DB7 /* [CP] Embed Pods Frameworks */,
+				6E697FF14BD542F6361D4AA0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,10 +135,11 @@
 			};
 			buildConfigurationList = 504EC2FF1FED79650016851F /* Build configuration list for PBXProject "NFIT" */;
 			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = es;
+			developmentRegion = Spanish;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				es,
+				Base,
 			);
 			mainGroup = 504EC2FB1FED79650016851F;
 			productRefGroup = 504EC3051FED79650016851F /* Products */;
@@ -167,7 +168,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		71332A82CB592BF4B5E35CA2 /* [CP] Check Pods Manifest.lock */ = {
+		39777BCBBCE53B4F528FAEB6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -189,7 +190,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94CB49D463576C3A17672DB7 /* [CP] Embed Pods Frameworks */ = {
+		6E697FF14BD542F6361D4AA0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -221,7 +222,7 @@
 		504EC30B1FED79650016851F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				58B1A8E2241C293000ECC284 /* es */,
+				58560B4C2420155800F7E349 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -229,7 +230,7 @@
 		504EC3101FED79650016851F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				58B1A8E3241C293000ECC284 /* es */,
+				58560B4D2420155900F7E349 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -241,6 +242,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -298,6 +300,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -346,11 +349,12 @@
 		};
 		504EC3171FED79650016851F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B9E70A220EEFACD19FE2E91 /* Pods-NFIT.debug.xcconfig */;
+			baseConfigurationReference = F8BDADDCADBFB52600BA3610 /* Pods-NFIT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NFIT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 87XU7WDK7D;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -366,11 +370,12 @@
 		};
 		504EC3181FED79650016851F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E59C73978C1B8CFDFA0FA40C /* Pods-NFIT.release.xcconfig */;
+			baseConfigurationReference = 83BD7AEBF3B4A71B705B87D6 /* Pods-NFIT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NFIT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 87XU7WDK7D;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
