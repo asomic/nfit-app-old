@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 //ionic
-import { Platform, ToastController  } from '@ionic/angular';
+import { Platform, ToastController, AlertController  } from '@ionic/angular';
 
+import { FCM } from 'capacitor-fcm';
 //capacitor
 import {
   Plugins,
@@ -11,6 +12,7 @@ import {
   PushNotificationActionPerformed } from '@capacitor/core';
 
 const { PushNotifications } = Plugins;
+const fcm = new FCM();
 
 //services
 import { UserService } from '../services/user/user.service';
@@ -29,30 +31,45 @@ export class TabsPage implements OnInit {
     private userService: UserService,
     public toastController: ToastController,
     private location: Location,
+    private alertCtrl: AlertController,
     // private authService: AuthService,
   ) { }
 
   ngOnInit() {
     this.backButtonEvent();
     
-    PushNotifications.register();
 
     // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration', 
-      (token: PushNotificationToken) => {
-       // alert('Push registration success, token: ' + token.value);
-        this.token = token.value;
-        this.userService.addPushToken(token.value).subscribe(result => {
-          console.log(result);
+    // PushNotifications.addListener('registration', 
+    //   (token: PushNotificationToken) => {
+    //    // alert('Push registration success, token: ' + token.value);
+    //     this.token = token.value;
+    //     this.userService.addPushToken(token.value).subscribe(result => {
+    //       console.log(result);
           
-        });
-      }
-    );
+    //     });
+    //   }
+    // );
+
+    PushNotifications.register().then(()=> {
+      fcm.getToken().then(
+        result => {
+          let addPushToken = this.userService.addPushToken(result.token).subscribe(result => {
+           // this.pushToast(notification.title,notification.body);
+            console.log(result);
+            addPushToken.unsubscribe();
+          });
+        }
+      );
+
+    });
+
+
 
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError', 
       (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
+        alert('Error 0002: Error permisos mensajes push.');
       }
     );
 
@@ -67,7 +84,15 @@ export class TabsPage implements OnInit {
     // Method called when tapping on a notification
     PushNotifications.addListener('pushNotificationActionPerformed', 
       (notification: PushNotificationActionPerformed) => {
-        console.log(notification);
+        const data: any = notification.notification.data;
+        console.log('data');
+        console.log(data);
+        console.log('data title');
+        console.log(data.title);
+        console.log('data body');
+        console.log(data.body);
+
+        this.pushToast(data.title, data.body);
         
       }
     );

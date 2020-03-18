@@ -200,6 +200,7 @@ export class AuthService {
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
+        
         this.authRefreshing = true;
         this.http.post(parsedData['_domain']+'/oauth/token', data, httpOptions).subscribe(
           response => {
