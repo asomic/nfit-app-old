@@ -40,16 +40,11 @@ export class TabsPage implements OnInit {
     
 
     // On success, we should be able to receive notifications
-    // PushNotifications.addListener('registration', 
-    //   (token: PushNotificationToken) => {
-    //    // alert('Push registration success, token: ' + token.value);
-    //     this.token = token.value;
-    //     this.userService.addPushToken(token.value).subscribe(result => {
-    //       console.log(result);
-          
-    //     });
-    //   }
-    // );
+    PushNotifications.addListener('registration', 
+      (token: PushNotificationToken) => {
+        alert('Push registration success, token: ' + token.value);
+
+    });
 
     PushNotifications.register().then(()=> {
       fcm.getToken().then(
@@ -61,10 +56,7 @@ export class TabsPage implements OnInit {
           });
         }
       );
-
     });
-
-
 
     // Some issue with our setup and push will not work
     PushNotifications.addListener('registrationError', 
