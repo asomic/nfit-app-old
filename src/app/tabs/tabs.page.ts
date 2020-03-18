@@ -94,6 +94,7 @@ export class TabsPage implements OnInit {
     const toast = await this.toastController.create({
       header: title,
       message: message,
+      position: "top",
       buttons: [
         {
           text: 'Cerrar',
