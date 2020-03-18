@@ -78,6 +78,8 @@ export class TabsPage implements OnInit {
     PushNotifications.addListener('pushNotificationActionPerformed', 
       (notification: PushNotificationActionPerformed) => {
         const data: any = notification.notification.data;
+        console.log('notification');
+        console.log(notification);
         console.log('data');
         console.log(data);
         console.log('data title');
