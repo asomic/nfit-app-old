@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:NFIT.xcodeproj">
+      location = "group:/Users/juanberrios/Documents/app/nfit-app/ios/App/NFIT.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
