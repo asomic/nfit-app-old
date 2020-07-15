@@ -33,7 +33,6 @@ export class AuthService {
   ) { }
 
   public get auth() {
-
     return this._auth.asObservable().pipe(
       map(user => {
         if (user) {
@@ -65,7 +64,6 @@ export class AuthService {
     const data = JSON.stringify({
       email: email,
     });
-
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -83,6 +81,14 @@ export class AuthService {
 
   }
 
+  getDomain(email) {
+    const data = JSON.stringify({
+      username: email,
+    });
+
+    return this.http.get('https://admin.nfitapi.app/domain/' + email);
+  }
+
   authenticate(email, password, subdomain) {
 
     const data = JSON.stringify({
@@ -96,8 +102,8 @@ export class AuthService {
     const httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const domain : string = environment.http+subdomain+environment.domain;
-    const response = this.http.post(domain+'/oauth/token', data, httpOptions);
+    const domain: string = environment.http + subdomain;
+    const response = this.http.post(domain + '/oauth/token', data, httpOptions);
     return response.pipe(map( response => {
                   const httpOptions = {
                     headers: new HttpHeaders({

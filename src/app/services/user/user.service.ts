@@ -56,4 +56,17 @@ export class UserService {
       )
     );
   }
+
+  getAlerts() {
+    return this.authservice.auth.pipe(
+      switchMap(
+        auth => {
+          return this.http.get(
+            auth._domain + '/users-alerts',
+            auth._header
+            );
+        }
+      )
+    );
+  }
 }

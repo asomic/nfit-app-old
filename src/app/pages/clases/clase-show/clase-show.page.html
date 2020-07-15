@@ -21,7 +21,7 @@
     <div class="reserva" *ngIf="clase">
 
 
-            <!-- solo si se va a reservar -->
+    <!-- solo si se va a reservar -->
         <h1 class="titleReserva-section margin-bottom" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.can) && (!clase?.rels.auth_reservation.has)">
         Estás a un paso de reservar
         </h1>
@@ -79,6 +79,8 @@
         <button class="button-edit" (click)="openModalCeder()">Ceder cupo</button>
         </div>
 
+        
+
         <hr class="separator">
         <div class="card card-inscritos">
         <div class="title">
@@ -120,6 +122,10 @@
     <ion-fab vertical="bottom" slot="fixed" class="button-fix-ios" *ngIf="(clase?.active) && (clase?.rels.auth_reservation.can) && (!clase?.rels.auth_reservation.has)">
         <div class="reservar" (click)="reserveModal()">Reservar esta hora</div>
     </ion-fab>
+
+    <!-- <ion-fab vertical="bottom" slot="fixed" class="button-fix-ios" *ngIf="(clase?.zoom_link)">
+        <button class="reservar" (click)="goZoom()">Ir a Zoom</button>
+    </ion-fab> -->
 
 </ion-content>
 

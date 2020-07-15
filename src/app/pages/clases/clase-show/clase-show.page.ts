@@ -2,6 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+//capacitor 
+import { Plugins } from '@capacitor/core';
+
+const { Browser } = Plugins;
+
 //ionic
 import { ModalController, LoadingController} from '@ionic/angular';
 //servicios
@@ -155,5 +160,11 @@ export class ClaseShowPage implements OnInit {
       console.log(data);
     });
     return await modal.present();
+  }
+
+  async goZoom() {
+    if (this.clase) {
+      await Browser.open({ url: this.clase.zoom_link});
+    }
   }
 }

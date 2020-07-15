@@ -16,6 +16,23 @@
         ></ion-refresher-content>
     </ion-refresher>
 
+    <div class="alerts-wrapper" *ngIf="alerts">
+        <div *ngIf="alerts?.has_inapp_notification">
+            <div class="card card-alert card-alert-info"  *ngFor="let bn of alerts.inapp_notification" >
+
+                <div class="ps-row">
+                    <div class="col-2 icon">
+                        <ion-icon src="/assets/icon/info.svg"></ion-icon>
+                    </div>
+
+                    <div class="col-10 text">
+                        <p [innerHTML]="bn.message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- todayWods -->
     <div class="section wod-resumen" *ngIf="todayWods">
         <div class="wod-slide">

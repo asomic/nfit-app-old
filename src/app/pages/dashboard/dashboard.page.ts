@@ -14,6 +14,8 @@ import { WodService } from '../../services/wod/wod.service';
 import { ClaseService } from '../../services/clase/clase.service';
 //services
 import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
+
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -22,12 +24,17 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  todayWods: any
+  
+  todayWods: any;
+  alerts: any;
   nextClase: any = [];
   wodSubscription: Subscription;
   nextClaseSubscription: Subscription;
+  alertSubscription: Subscription;
+
   constructor(
     private wodService: WodService,
+    private userService: UserService,
     private claseService: ClaseService,
     private authService: AuthService,
     private router: Router,
@@ -49,28 +56,28 @@ export class DashboardPage implements OnInit {
 
 
   ionViewWillEnter() {
-    //  this.wodService.getTodayWods().pipe( 
-    //   take(1),
-    //   map(
-    //     response => {
-    //       console.log();
-    //       this.todayWods = response['data'];
-    //     }
-    //   )
-    // );
-    this.wodSubscription = this.wodService.getTodayWods().subscribe( 
+
+    this.alertSubscription = this.userService.getAlerts().subscribe(
+      response => {
+        this.alerts = response['data'];
+        console.log(response['data']);
+        this.alertSubscription.unsubscribe();
+      }
+    );
+
+    this.wodSubscription = this.wodService.getTodayWods().subscribe(
       response => {
         this.todayWods = response['data'];
         this.wodSubscription.unsubscribe();
       }
-    )
+    );
 
     this.nextClaseSubscription = this.claseService.getNextClases().subscribe( 
       response => {
         this.nextClase = response['data'].filter(clase => clase.active)[0];
         this.nextClaseSubscription.unsubscribe();
       }
-    )
+    );
 
   }
 

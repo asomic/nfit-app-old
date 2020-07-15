@@ -17,6 +17,8 @@ import { Subscription } from 'rxjs';
 export class ProfileShowPage implements OnInit {
   profile: any;
   profileSubscription: Subscription;
+  alertSubscription: Subscription;
+  
 
   constructor(
     private userService: UserService,
@@ -42,6 +44,13 @@ export class ProfileShowPage implements OnInit {
       this.profile = response['data'];
       this.profileSubscription.unsubscribe();
     })
+
+    this.alertSubscription = this.userService.getAlerts().subscribe(
+      response => {
+        console.log(response['data']);
+        this.alertSubscription.unsubscribe();
+      }
+    );
   }
 
   async onLogout() {
