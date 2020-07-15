@@ -75,10 +75,13 @@
         </div>
         </div>
     <!-- boton ceder -->
-        <div *ngIf="clase?.rels?.auth_reservation.status.id === 1" class="buttons-edit-reserva">
+        <div *ngIf="(clase?.active) && (clase?.rels?.auth_reservation.status.id === 1)" class="buttons-edit-reserva">
         <button class="button-edit" (click)="openModalCeder()">Ceder cupo</button>
         </div>
 
+        <div *ngIf="zoom?.can_zoom" class="buttons-edit-reserva">
+            <button class="button-edit" (click)="goZoom()">Ir a Zoom</button>
+        </div>
         
 
         <hr class="separator">

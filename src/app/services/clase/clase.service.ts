@@ -119,6 +119,20 @@ export class ClaseService {
     );
   }
 
+    //zoom clase
+    claseZoom( id ) {
+      return this.authservice.auth.pipe(
+        switchMap(
+          auth => {
+            return this.http.get(
+              auth._domain + '/clases/' + id + '/zoom',
+              auth._header
+            )
+          }
+        )
+      );
+    }
+
   //tipos de clases
   getClaseTypes() {
     return this.authservice.auth.pipe(

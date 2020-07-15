@@ -26,7 +26,10 @@ export class ClaseShowPage implements OnInit {
   clase: any;
   reservations: any;
   reservationPage: number;
+  zoom: any;
   getClaseSubscription: Subscription;
+  claseZoomSubscription: Subscription;
+
   getClaseReservationsSubscription: Subscription;
   constructor(
     private claseService: ClaseService,
@@ -79,6 +82,12 @@ export class ClaseShowPage implements OnInit {
           console.log(this.reservations);
           this.getClaseReservationsSubscription.unsubscribe();
         })
+
+        this.claseZoomSubscription = this.claseService.claseZoom(id).subscribe( response => {
+          this.zoom = response;
+          console.log('zoom');
+          console.log(this.zoom);
+        });
 
       });
   }
@@ -163,8 +172,10 @@ export class ClaseShowPage implements OnInit {
   }
 
   async goZoom() {
-    if (this.clase) {
-      await Browser.open({ url: this.clase.zoom_link});
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+
+    if (this.zoom.can_zoom) {
+      await Browser.open({ url: this.zoom.zoom_link});
     }
   }
 }
